@@ -1,4 +1,4 @@
-# Project: Project_OPP
+# Project: Project1
 # Makefile created by Dev-C++ 5.11
 
 CPP      = g++.exe -D__DEBUG__
@@ -6,10 +6,10 @@ CC       = gcc.exe -D__DEBUG__
 WINDRES  = windres.exe
 OBJ      = Admin.o ATM.o Customer.o main.o
 LINKOBJ  = Admin.o ATM.o Customer.o main.o
-LIBS     = -L"D:/Dev-Cpp/MinGW64/x86_64-w64-mingw32/lib32" -static-libgcc -mwindows -g3
+LIBS     = -L"D:/Dev-Cpp/MinGW64/x86_64-w64-mingw32/lib32" -static-libgcc -g3
 INCS     = -I"D:/Dev-Cpp/MinGW64/include" -I"D:/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"D:/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include"
 CXXINCS  = -I"D:/Dev-Cpp/MinGW64/include" -I"D:/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"D:/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include" -I"D:/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include/c++"
-BIN      = Project_OPP.exe
+BIN      = Project1.exe
 CXXFLAGS = $(CXXINCS) -std=gnu++11 -g3
 CFLAGS   = $(INCS) -std=gnu++11 -g3
 RM       = rm.exe -f
