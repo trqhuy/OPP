@@ -349,7 +349,7 @@ int main() {
                 cout << "Nhap ma PIN: ";
                 cin >> PIN;
 
-                // Hi?n th? danh sÃ¡ch ATM
+                // Hi?n th? danh sách ATM
                 cout << "Chon ATM:\n";
                 admin.inDanhSachATM();
                 int atmChoice;
@@ -376,7 +376,7 @@ int main() {
                 cout << "Nhap so the: ";
                 cin >> soThe;
 
-                // Hi?n th? danh sÃ¡ch ATM
+                // Hi?n th? danh sách ATM
                 cout << "Chon ATM:\n";
                 admin.inDanhSachATM();
                 int atmChoice;
@@ -415,11 +415,11 @@ int main() {
                 cin >> nganHangQuanLy;
 
                 ATM newATM(idATM, soDuATM, diaChi, trangThai, nganHangQuanLy);
-                admin.themATM(newATM); // ThÃªm ATM vÃ o danh sÃ¡ch
+                admin.themATM(newATM); // Thêm ATM vào danh sách
                 break;
             }
             case 8: {
-                admin.inDanhSachATM(); // In danh sÃ¡ch ATM
+                admin.inDanhSachATM(); // In danh sách ATM
                 break;
             }
             case 0:
@@ -429,7 +429,7 @@ int main() {
                 cout << "Lua chon khong hop le. Vui long chon lai." << endl;
         }
 
-        cout << endl;
+        cout << endl; // Dùng ð? t?o kho?ng tr?ng
     } while (choice != 0);
 
     return 0;
