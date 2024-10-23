@@ -1,5 +1,1 @@
-123,49998,tp Thu Duc,Khong Hoat Dong,Khong Hoat Dong
-456,60000,tp Ho CHi Minh,Hoat Dong,001
-789,30000,tp Thu Duc,Hoat Dong,000
-1234,500000,tp. HO CHI MINH,Hoat Dong,001
-001123334,200000,Tp. Can Tho,Hoat Dong,001
+0011234567,987654336,tp.Thu DUC,Hoat Dong

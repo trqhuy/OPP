@@ -1,17 +1,17 @@
 #include "Customer.h"
-
-Customer::Customer(std::string soThe, std::string tenChuThe, std::string pin, float soDu)
+using namespace std;
+Customer::Customer(string soThe, string tenChuThe, string pin, float soDu)
     : soThe(soThe), tenChuThe(tenChuThe), PIN(pin), soDu(soDu) {}
 
-std::string Customer::getSoThe() {
+string Customer::getSoThe() {
     return soThe;
 }
 
-std::string Customer::getTenChuThe() {
+string Customer::getTenChuThe() {
     return tenChuThe;
 }
 
-std::string Customer::getPin() {
+string Customer::getPin() {
     return PIN;
 }
 

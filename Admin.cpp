@@ -1,8 +1,9 @@
 #include "Admin.h"
 #include "ATM.h"
+#include "Menu.h"
+#include<windows.h>
 #include <fstream>
 #include <iostream>
-#include <string>
 #include <sstream>
 #include <ctime>
 #include <vector>
@@ -14,7 +15,6 @@ using namespace std;
 void Admin::themATM(ATM atm) {
 	danhSachATM.push_back(atm);
 	atm.ghiThongTinATM();
-	cout << "ATM " << atm.idATM << " da duoc tao." << endl;
 }
 
 void Admin::inDanhSachATM() {
@@ -42,35 +42,84 @@ void Admin::themKhachHang(Customer& customer) {
 		           << customer.getPin() << ","
 		           << customer.getSoDu() << endl;
 		outputFile.close();
-		cout << "Them thong tin khach hang thanh cong." << endl;
+		weigh();
+		cout <<"|"<< setw(39) << (char)201 << string(40, (char)205) << (char)187 						<< setw(39) <<"|" << "\n";
+		cout <<"|"<< setw(39) << (char)186 << "       TAI KHOAN MOI DA DUOC TAO        " << (char)186   << setw(39) <<"|"<< "\n";
+		cout <<"|"<< setw(39) << (char)200 << string(40, (char)205) << (char)188 						<< setw(39) <<"|"<< "\n";
+		weigh();
 	} else {
-		cout << "Khong the mo file de ghi!" << endl;
+		cout << "!!!!!!!!Khong the tao tai khoan ngan hang!!!!!!!!" << endl;
 	}
 }
 
 void Admin::taoNganHang(string idBank) {
+	system("cls");
 	ofstream bankFile(idBank + "_information.txt");
 	if (bankFile.is_open()) {
-		cout << "Ngan hang " << idBank << " da duoc tao." << endl;
+		weigh();
+		cout <<"|"<< setw(39) << (char)201 << string(40, (char)205) << (char)187 						<< setw(39) <<"|" << "\n";
+		cout <<"|"<< setw(39) << (char)186 << "       NGAN HANG MOI DA DUOC TAO        " << (char)186   << setw(39) <<"|"<< "\n";
+		cout <<"|"<< setw(39) << (char)200 << string(40, (char)205) << (char)188 						<< setw(39) <<"|"<< "\n";
+		weigh();
 		bankFile.close();
 	} else {
-		cout << "Khong the tao ngan hang!" << endl;
+		cout << "!!!!!!!!Khong the tao ngan hang!!!!!!!!" << endl;
 	}
 }
 
 void Admin::xemLichSuGiaoDich(string idBank) {
 	ifstream logFile(idBank + "_transaction_history.txt");
 	if (logFile.is_open()) {
+
+		int count=1;
+		string temp;
 		string line;
-		cout << "Lich su giao dich cua ngan hang " << idBank << ":" << endl;
+
+		weigh();
+		cout <<"|"<< setw(39) << (char)201 << string(40, (char)205) << (char)187 						<< setw(39) <<"|" << "\n";
+		cout <<"|"<< setw(39) << (char)186 << "          LICH SU GIAO DICH             " << (char)186   << setw(39) <<"|"<< "\n";
+		cout <<"|"<< setw(39) << (char)200 << string(40, (char)205) << (char)188 						<< setw(39) <<"|"<< "\n";
+		weigh();
+
+		cout <<"|"<< setw(119) <<"|"<< "\n";
+		cout <<"|"<< setw(8)<< "STT" << setw(20) <<"Ma giao dich" <<setw(20) <<"Tai khoan" << setw(30)<< "So tien" << setw(30) <<"Ngay thuc hien" << setw(11) <<"|"<< "\n";
+		cout <<"|"<< setw(119) <<"|"<< "\n";
+
 		while (getline(logFile, line)) {
-			cout << line << endl;
+			string date, time, transactionID, amount, account;
+			stringstream ss(line);
+
+			getline(ss, date, ',');
+
+			string temp;
+			getline(ss, temp, ':');
+			getline(ss, transactionID, ',');
+
+			getline(ss, amount, ',');
+
+			getline(ss, temp, ':');
+			getline(ss, account);
+
+			const int totalWidth = 120;
+
+			cout <<"|"<< setw(119) <<"|"<< "\n";
+			cout <<"|"<< setw(8)<< count << setw(20) <<transactionID <<setw(20) << account << setw(30)<< amount << setw(30) << date << setw(11) <<"|"<< "\n";
+			cout <<"|"<< setw(119) <<"|"<< "\n";
+
+			count++;
 		}
+
+		weigh();
 		logFile.close();
 	} else {
-		cout << "Khong the mo file lich su giao dich!" << endl;
+		cout << "+======================================================================================================================+" << endl;
+		cout << "|                                      ??????????????????????????????????????????                                      |" << endl;
+		cout << "|                                      ?  KHONG THE MO FILE LICH SU GIAO DICH   ?                                      |" << endl;
+		cout << "|                                      ??????????????????????????????????????????                                      |" << endl;
+		cout << "+======================================================================================================================+" << endl;
 	}
 }
+
 
 void Admin::xemLichSuGiaoDichKhachHang(string soThe) {
 	string idBank = soThe.substr(0, 3);
@@ -88,7 +137,7 @@ void Admin::xemLichSuGiaoDichKhachHang(string soThe) {
 	}
 }
 
-void Admin::xoaTaiKhoan(string soThe) {
+	void Admin::xoaTaiKhoan(string soThe) {
 	string idBank = soThe.substr(0, 3);
 	ifstream inputFile(idBank + "_information.txt");
 	ofstream tempFile(idBank + "_temp.txt");
@@ -111,13 +160,17 @@ void Admin::xoaTaiKhoan(string soThe) {
 		remove((idBank + "_information.txt").c_str());
 		rename((idBank + "_temp.txt").c_str(), (idBank + "_information.txt").c_str());
 	} else {
-		cout << "Khong the mo file de xoa!" << endl;
+		cout << "!!!!!!!!Khong the mo file de xoa!!!!!!!!" << endl;
 	}
 
 	if (found) {
-		cout << "Xoa tai khoan " << soThe << " thanh cong." << endl;
+		weigh();
+		cout <<"|"<< setw(39) << (char)201 << string(40, (char)205) << (char)187 						<< setw(39) <<"|" << "\n";
+		cout <<"|"<< setw(39) << (char)186 << "       TAI KHOAN DA DUOC TAO XOA        " << (char)186   << setw(39) <<"|"<< "\n";
+		cout <<"|"<< setw(39) << (char)200 << string(40, (char)205) << (char)188 						<< setw(39) <<"|"<< "\n";
+		weigh();
 	} else {
-		cout << "Tai khoan khong ton tai." << endl;
+		cout << "!!!!!!!!Tai khoan khong ton tai!!!!!!!!" << endl;
 	}
 }
 

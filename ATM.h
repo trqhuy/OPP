@@ -5,27 +5,29 @@
 #include <string>
 #include <vector>
 
+using namespace std;
+
 class ATM {
 public:
     Customer Cust;
-    std::string idATM;
+    string idATM;
     float soDuATM;
-    std::string diaChi;
+    string diaChi;
     bool trangThaiHoatDong;
-    std::string nganHangQuanLy;
+    string nganHangQuanLy;
 
-    ATM(std::string idATM, float soDuATM, std::string diaChi, bool trangThai, std::string nganHang);
+    ATM(string idATM, float soDuATM, string diaChi, bool trangThai, string nganHang);
     
-    bool timSTK(std::string soThe);
-    bool checkPIN(std::string PIN);
-    void ghiLichSu(std::string action, float amount, const std::string& transactionId);
-    void ghiLichSuNganHang(std::string action, float amount, const std::string& transactionId);
+    bool timSTK(string soThe);
+    bool checkPIN(string PIN);
+    void ghiLichSu(string action, float amount, const string& transactionId);
+    void ghiLichSuNganHang(string action, float amount, const string& transactionId);
     void rutTien(float soTien);
     void napTien(float soTien);
     void ghiThongTinKhachHang();
     void ghiThongTinATM();
-    std::string generateTransactionId();
-    void printReceipt(const std::string& action, float amount, const std::string& transactionId);
+    string generateTransactionId();
+    void printReceipt(const string& action, float amount, const string& transactionId);
     void capNhatSoDuATM();
 };
 

@@ -1,16 +1,16 @@
 #include "ATM.h"
 #include <fstream>
-#include <sstream>
+#include <sstream>//ham xu ly chuoi, dung de tach chuoi
 #include <ctime>
 #include <iostream>
-#include <iomanip>
+#include <iomanip>//tao so ngau nhien
 #include <cstdlib>
 #include <windows.h>
 #include <string.h>
 using namespace std;
 
 ATM::ATM(string idATM, float soDuATM, string diaChi, bool trangThai, string nganHang)
-			: Cust("", "", "", 0), idATM(idATM), soDuATM(soDuATM), diaChi(diaChi), trangThaiHoatDong(trangThai), nganHangQuanLy(nganHang) {}
+	: Cust("", "", "", 0), idATM(idATM), soDuATM(soDuATM), diaChi(diaChi), trangThaiHoatDong(trangThai), nganHangQuanLy(nganHang) {}
 
 bool ATM::timSTK(string soThe) {
 	string idBank = soThe.substr(0, 3);
@@ -46,8 +46,12 @@ void ATM::ghiLichSu(string action, float amount, const string& transactionId) {
 	ofstream logFile(transactionFileName, ios::app);
 	if (logFile.is_open()) {
 		time_t now = time(0);
-		char* dt = ctime(&now);
-		logFile << dt << ": " << action << " - " << amount << " VND, Transaction ID: " << transactionId << endl;
+		tm *ltm = localtime(&now);
+
+		char dt[20];
+		strftime(dt, sizeof(dt), "%d/%m/%Y %H:%M:%S", ltm);
+
+		logFile << dt << ", " <<"Transaction ID: " << transactionId <<", "<< action << " - " << amount << " VND" << endl;
 		logFile.close();
 	} else {
 		cout << "Khong the mo file lich su giao dich!" << endl;
@@ -60,13 +64,19 @@ void ATM::ghiLichSuNganHang(string action, float amount, const string& transacti
 	ofstream bankLogFile(bankTransactionFileName, ios::app);
 	if (bankLogFile.is_open()) {
 		time_t now = time(0);
-		char* dt = ctime(&now);
-		bankLogFile << dt << ": " << action << " - " << amount << " VND, Tai khoan: " << Cust.soThe << ", Transaction ID: " << transactionId << endl;
+		tm *ltm = localtime(&now);
+
+		char dt[20];
+		strftime(dt, sizeof(dt), "%d/%m/%Y %H:%M:%S", ltm);
+
+
+		bankLogFile << dt << ", "<< "Transaction ID: " << transactionId <<", " << action << " - " << amount << " VND, Tai khoan: " << Cust.soThe  << endl;
 		bankLogFile.close();
 	} else {
 		cout << "Khong the mo file lich su giao dich ngan hang!" << endl;
 	}
 }
+
 
 void ATM::ghiThongTinKhachHang() {
 	string idBank = Cust.soThe.substr(0, 3);
@@ -96,29 +106,20 @@ void ATM::ghiThongTinKhachHang() {
 }
 
 void ATM::ghiThongTinATM() {
-	string customerFileName = "atm-info.txt";
-	ifstream inputFile(customerFileName);
-	ofstream tempFile("_temp.txt");
+    string ATMFileName = "atm_info.txt";
+    ofstream outputFile(ATMFileName, ios::app);  // S? d?ng ch? d? append (ios::app) d? ghi thêm vào cu?i file
 
-	if (inputFile.is_open() && tempFile.is_open()) {
-		string line;
-		while (getline(inputFile, line)) {
-			stringstream ss(line);
-			string id;
-			getline(ss, id, ',');
-			if (id == idATM) {
-				tempFile << idATM << "," << soDuATM << "," << diaChi << "," << "Hoat Dong" "," << trangThaiHoatDong << endl;
-			} else {
-				tempFile << line << endl;
-			}
-		}
-		inputFile.close();
-		tempFile.close();
-		remove(customerFileName.c_str());
-	} else {
-		cout << "Khong the mo file de ghi!" << endl;
-	}
+    if (outputFile.is_open()) {
+        outputFile << idATM << "," << fixed << setprecision(0) << soDuATM << "," << diaChi << "," 
+                   << (trangThaiHoatDong ? "Hoat Dong" : "Khong Hoat Dong") << endl;
+        outputFile.close();
+    } else {
+        cout << "Khong the mo file de ghi!" << endl;
+    }
 }
+
+
+
 string ATM::generateTransactionId() {
 	srand(static_cast<unsigned>(time(0)));
 	stringstream ss;
@@ -127,7 +128,7 @@ string ATM::generateTransactionId() {
 }
 
 void ATM::printReceipt(const string& action, float amount, const string& transactionId) {
-	cout << "=== HOA DON GIAO DICH ===" << endl;
+	cout << "+=== HOA DON GIAO DICH ===+" << endl;
 	cout << "Ma giao dich: " << transactionId << endl;
 	cout << "Loai giao dich: " << action << endl;
 	cout << "So tien: " << amount << " VND" << endl;
@@ -136,8 +137,9 @@ void ATM::printReceipt(const string& action, float amount, const string& transac
 }
 
 void ATM::capNhatSoDuATM() {
+	string idBank = idATM.substr(0, 3);
 	ifstream inputFile("atm_info.txt");
-	ofstream tempFile(nganHangQuanLy + "_temp.txt");
+	ofstream tempFile(idBank + "_temp.txt");
 
 	if (inputFile.is_open() && tempFile.is_open()) {
 		string line;
@@ -169,7 +171,8 @@ void ATM::capNhatSoDuATM() {
 		tempFile.close();
 
 		remove("atm_info.txt");
-		rename((nganHangQuanLy + "_temp.txt").c_str(), "atm_info.txt");
+		rename((idBank + "_temp.txt").c_str(), "atm_info.txt");
+//		rename(("_temp.txt").c_str(), "atm_info.txt");
 
 
 	} else {

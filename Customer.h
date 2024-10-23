@@ -5,14 +5,14 @@ using namespace std;
 
 class Customer {
 public:
-    std::string soThe, tenChuThe, PIN;
+    string soThe, tenChuThe, PIN;
     float soDu;
 
-    Customer(std::string soThe, std::string tenChuThe, std::string pin, float soDu);
+    Customer(string soThe, string tenChuThe, string pin, float soDu);
     
-    std::string getSoThe();
-    std::string getTenChuThe();
-    std::string getPin();
+    string getSoThe();
+    string getTenChuThe();
+    string getPin();
     float getSoDu();
     void setSoDu(float newSoDu);
 };
