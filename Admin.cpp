@@ -120,7 +120,7 @@ void Admin::xemLichSuGiaoDich(string idBank) {
 	}
 }
 
-
+// Xem lại lịch sử giao dịch
 void Admin::xemLichSuGiaoDichKhachHang(string soThe) {
 	string idBank = soThe.substr(0, 3);
 	string transactionFileName = idBank + "_" + soThe + "_transaction_history.txt";
@@ -173,7 +173,7 @@ void Admin::xemLichSuGiaoDichKhachHang(string soThe) {
 		cout << "!!!!!!!!Tai khoan khong ton tai!!!!!!!!" << endl;
 	}
 }
-
+// Chọn cây ATM
 void Admin::chonATM(ATM& atm) {
 	inDanhSachATM();
 	int atmChoice;
