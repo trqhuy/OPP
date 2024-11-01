@@ -66,7 +66,7 @@ void Admin::taoNganHang(string idBank) {
 		cout << "!!!!!!!!Khong the tao ngan hang!!!!!!!!" << endl;
 	}
 }
-
+//xem lich su giao dich
 void Admin::xemLichSuGiaoDich(string idBank) {
 	ifstream logFile(idBank + "_transaction_history.txt");
 	if (logFile.is_open()) {

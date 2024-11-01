@@ -12,7 +12,7 @@ using namespace std;
 ATM::ATM(string idATM, float soDuATM, string diaChi, bool trangThai, string nganHang)
 	: Cust("", "", "", 0), idATM(idATM), soDuATM(soDuATM), diaChi(diaChi), trangThaiHoatDong(trangThai), nganHangQuanLy(nganHang) {}
 
-bool ATM::timSTK(string soThe) {
+bool ATM::timSTK(string soThe) {  // tim kiem so tai khoan
 	string idBank = soThe.substr(0, 3);
 	ifstream inputFile(idBank + "_information.txt");
 	if (inputFile.is_open()) {
@@ -36,11 +36,11 @@ bool ATM::timSTK(string soThe) {
 	return false;
 }
 
-bool ATM::checkPIN(string PIN) {
+bool ATM::checkPIN(string PIN) { //kiem tra so pin
 	return Cust.PIN == PIN;
 }
 
-void ATM::ghiLichSu(string action, float amount, const string& transactionId) {
+void ATM::ghiLichSu(string action, float amount, const string& transactionId) { //ghi lai lich su giao dich
 	string idBank = Cust.soThe.substr(0, 3);
 	string transactionFileName = idBank + "_" + Cust.soThe + "_transaction_history.txt";
 	ofstream logFile(transactionFileName, ios::app);
@@ -58,7 +58,7 @@ void ATM::ghiLichSu(string action, float amount, const string& transactionId) {
 	}
 }
 
-void ATM::ghiLichSuNganHang(string action, float amount, const string& transactionId) {
+void ATM::ghiLichSuNganHang(string action, float amount, const string& transactionId) { //ghi lich su ngan hang
 	string idBank = Cust.soThe.substr(0, 3);
 	string bankTransactionFileName = idBank + "_transaction_history.txt";
 	ofstream bankLogFile(bankTransactionFileName, ios::app);
@@ -78,7 +78,7 @@ void ATM::ghiLichSuNganHang(string action, float amount, const string& transacti
 }
 
 
-void ATM::ghiThongTinKhachHang() {
+void ATM::ghiThongTinKhachHang() { // ghi thong tin ngan hang
 	string idBank = Cust.soThe.substr(0, 3);
 	string customerFileName = idBank + "_information.txt";
 	ifstream inputFile(customerFileName);
@@ -107,7 +107,7 @@ void ATM::ghiThongTinKhachHang() {
 
 void ATM::ghiThongTinATM() {
     string ATMFileName = "atm_info.txt";
-    ofstream outputFile(ATMFileName, ios::app);  // S? d?ng ch? d? append (ios::app) d? ghi th�m v�o cu?i file
+    ofstream outputFile(ATMFileName, ios::app);  // Su dung ch d? append (ios::app) de ghi them vao cuoi file
 
     if (outputFile.is_open()) {
         outputFile << idATM << "," << fixed << setprecision(0) << soDuATM << "," << diaChi << "," 
@@ -127,7 +127,7 @@ string ATM::generateTransactionId() {
 	return ss.str();
 }
 
-void ATM::printReceipt(const string& action, float amount, const string& transactionId) {
+void ATM::printReceipt(const string& action, float amount, const string& transactionId) {//in hoa don
 	cout << "+=== HOA DON GIAO DICH ===+" << endl;
 	cout << "Ma giao dich: " << transactionId << endl;
 	cout << "Loai giao dich: " << action << endl;
