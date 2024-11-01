@@ -2,13 +2,14 @@
 using namespace std;
 
 #include <conio.h> // Ch? s? d?ng trong m?t s? tr?nh bi�n d?ch
-
+// Hàm chờ người dùng nhấn phím bất kì để tiếp tục
 int wait() {
     cout << setw(60+27) << "--------------Nhan phim bat ki de thoat--------------\n";
     getch();
     return 0;
 }
 
+// Tạo dao diện
 void weigh() {
 	cout << "+";
 	for(int i=0; i<118; i++) cout<<"=";
@@ -35,7 +36,7 @@ void Print_Menu() {
 	cout <<"Nhap lua chon cua ban ->";
 }
 
-
+// Hàm tạo ngân hàng mới
 void Oder_1(Admin admin) {
 	system("cls");
 	string idBank;
@@ -50,6 +51,7 @@ void Oder_1(Admin admin) {
 	wait();
 }
 
+// Hàm in lịch sử giao dịch của ngân hàng
 void Oder_2(Admin admin) {
 	system("cls");
 	string idBank;
@@ -58,7 +60,7 @@ void Oder_2(Admin admin) {
 	admin.xemLichSuGiaoDich(idBank);
 	wait();
 }
-
+// Hàm thêm tài khoảng ngân hàng mới
 void Oder_3(Admin admin) {
 	system("cls");
 	weigh();
@@ -147,7 +149,7 @@ void Oder_6(Admin admin) {
 	}
 	wait();
 }
-
+// tạo và thêm một cây ATM mới vào danh sách quản lý
 void Oder_7(Admin admin) {
 	string idATM, diaChi, nganHangQuanLy;
 	float soDuATM;
