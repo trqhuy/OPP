@@ -107,7 +107,7 @@ void ATM::ghiThongTinKhachHang() {
 
 void ATM::ghiThongTinATM() {
     string ATMFileName = "atm_info.txt";
-    ofstream outputFile(ATMFileName, ios::app);  // S? d?ng ch? d? append (ios::app) d? ghi thêm vào cu?i file
+    ofstream outputFile(ATMFileName, ios::app);  // S? d?ng ch? d? append (ios::app) d? ghi thï¿½m vï¿½o cu?i file
 
     if (outputFile.is_open()) {
         outputFile << idATM << "," << fixed << setprecision(0) << soDuATM << "," << diaChi << "," 
@@ -120,7 +120,7 @@ void ATM::ghiThongTinATM() {
 
 
 
-string ATM::generateTransactionId() {
+string ATM::generateTransactionId() { 
 	srand(static_cast<unsigned>(time(0)));
 	stringstream ss;
 	ss << "TX" << setw(6) << setfill('0') << rand() % 1000000;
@@ -197,7 +197,7 @@ void ATM::rutTien(float soTien) {
 
 	string transactionId = generateTransactionId();
 	ghiLichSu("Rut tien", soTien, transactionId);
-	ghiLichSuNganHang("Rut tien", soTien, transactionId);
+	ghiLichSuNganHang("Rut tien", soTien, transactionId); 
 
 	ghiThongTinKhachHang();
 
@@ -205,7 +205,6 @@ void ATM::rutTien(float soTien) {
 
 	printReceipt("Rut tien", soTien, transactionId);
 }
-
 
 
 void ATM::napTien(float soTien) {

@@ -1,7 +1,7 @@
 #include"Menu.h"
 using namespace std;
 
-#include <conio.h> // Ch? s? d?ng trong m?t s? tr?nh biên d?ch
+#include <conio.h> // Ch? s? d?ng trong m?t s? tr?nh biï¿½n d?ch
 
 int wait() {
     cout << setw(60+27) << "--------------Nhan phim bat ki de thoat--------------\n";
@@ -15,6 +15,7 @@ void weigh() {
 	cout << "+" << "\n";
 }
 
+//in menu
 void Print_Menu() {
 	weigh();
 	cout <<"|"<< setw(39) << (char)201 << string(40, (char)205) << (char)187 << setw(39) <<"|" << "\n";
