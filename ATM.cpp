@@ -1,5 +1,4 @@
 #include "ATM.h"
-#include "Menu.h"
 #include <fstream>
 #include <sstream>//ham xu ly chuoi, dung de tach chuoi
 #include <ctime>
@@ -8,13 +7,12 @@
 #include <cstdlib>
 #include <windows.h>
 #include <string.h>
-
 using namespace std;
 
 ATM::ATM(string idATM, float soDuATM, string diaChi, bool trangThai, string nganHang)
 	: Cust("", "", "", 0), idATM(idATM), soDuATM(soDuATM), diaChi(diaChi), trangThaiHoatDong(trangThai), nganHangQuanLy(nganHang) {}
 
-bool ATM::timSTK(string soThe) {
+bool ATM::timSTK(string soThe) {  // tim kiem so tai khoan
 	string idBank = soThe.substr(0, 3);
 	ifstream inputFile(idBank + "_information.txt");
 	if (inputFile.is_open()) {
@@ -38,11 +36,11 @@ bool ATM::timSTK(string soThe) {
 	return false;
 }
 
-bool ATM::checkPIN(string PIN) {
+bool ATM::checkPIN(string PIN) { //kiem tra so pin
 	return Cust.PIN == PIN;
 }
 
-void ATM::ghiLichSu(string action, float amount, const string& transactionId) {
+void ATM::ghiLichSu(string action, float amount, const string& transactionId) { //ghi lai lich su giao dich
 	string idBank = Cust.soThe.substr(0, 3);
 	string transactionFileName = idBank + "_" + Cust.soThe + "_transaction_history.txt";
 	ofstream logFile(transactionFileName, ios::app);
@@ -60,7 +58,7 @@ void ATM::ghiLichSu(string action, float amount, const string& transactionId) {
 	}
 }
 
-void ATM::ghiLichSuNganHang(string action, float amount, const string& transactionId) {
+void ATM::ghiLichSuNganHang(string action, float amount, const string& transactionId) { //ghi lich su ngan hang
 	string idBank = Cust.soThe.substr(0, 3);
 	string bankTransactionFileName = idBank + "_transaction_history.txt";
 	ofstream bankLogFile(bankTransactionFileName, ios::app);
@@ -80,7 +78,7 @@ void ATM::ghiLichSuNganHang(string action, float amount, const string& transacti
 }
 
 
-void ATM::ghiThongTinKhachHang() {
+void ATM::ghiThongTinKhachHang() { // ghi thong tin ngan hang
 	string idBank = Cust.soThe.substr(0, 3);
 	string customerFileName = idBank + "_information.txt";
 	ifstream inputFile(customerFileName);
@@ -109,7 +107,7 @@ void ATM::ghiThongTinKhachHang() {
 
 void ATM::ghiThongTinATM() {
     string ATMFileName = "atm_info.txt";
-    ofstream outputFile(ATMFileName, ios::app);
+    ofstream outputFile(ATMFileName, ios::app);  // Su dung ch d? append (ios::app) de ghi them vao cuoi file
 
     if (outputFile.is_open()) {
         outputFile << idATM << "," << fixed << setprecision(0) << soDuATM << "," << diaChi << "," 
@@ -122,14 +120,14 @@ void ATM::ghiThongTinATM() {
 
 
 
-string ATM::generateTransactionId() {
+string ATM::generateTransactionId() { 
 	srand(static_cast<unsigned>(time(0)));
 	stringstream ss;
 	ss << "TX" << setw(6) << setfill('0') << rand() % 1000000;
 	return ss.str();
 }
 
-void ATM::printReceipt(const string& action, float amount, const string& transactionId) {
+void ATM::printReceipt(const string& action, float amount, const string& transactionId) {//in hoa don
 	cout << "+=== HOA DON GIAO DICH ===+" << endl;
 	cout << "Ma giao dich: " << transactionId << endl;
 	cout << "Loai giao dich: " << action << endl;
@@ -147,17 +145,23 @@ void ATM::capNhatSoDuATM() {
 		string line;
 		while (getline(inputFile, line)) {
 			stringstream ss(line);
-			string id, diaChi, trangThai;
+			string id, diaChi, nganHang, trangThaiStr;
 			float soDu;
+			bool trangThai;
 
 			getline(ss, id, ',');
 			ss >> soDu;
 			ss.ignore();
 			getline(ss, diaChi, ',');
-			getline(ss, trangThai);
+			getline(ss, trangThaiStr, ',');
+			trangThai = (trangThaiStr == "Hoat Dong");
+			getline(ss, nganHang, ',');
 
 			if (id == idATM) {
-				tempFile << idATM << "," << fixed << setprecision(0) << soDuATM << "," << diaChi << "," << trangThai << endl;
+				// Write updated ATM balance
+				tempFile << idATM << "," << soDuATM << "," << diaChi << ","
+				         << (trangThaiHoatDong ? "Hoat Dong" : "Khong Hoat Dong") << ","
+				         << nganHangQuanLy << endl;
 			} else {
 				tempFile << line << endl;
 			}
@@ -168,6 +172,7 @@ void ATM::capNhatSoDuATM() {
 
 		remove("atm_info.txt");
 		rename((idBank + "_temp.txt").c_str(), "atm_info.txt");
+//		rename(("_temp.txt").c_str(), "atm_info.txt");
 
 
 	} else {
@@ -192,7 +197,7 @@ void ATM::rutTien(float soTien) {
 
 	string transactionId = generateTransactionId();
 	ghiLichSu("Rut tien", soTien, transactionId);
-	ghiLichSuNganHang("Rut tien", soTien, transactionId);
+	ghiLichSuNganHang("Rut tien", soTien, transactionId); 
 
 	ghiThongTinKhachHang();
 
@@ -200,7 +205,6 @@ void ATM::rutTien(float soTien) {
 
 	printReceipt("Rut tien", soTien, transactionId);
 }
-
 
 
 void ATM::napTien(float soTien) {
