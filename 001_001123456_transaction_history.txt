@@ -1,3 +1,12 @@
 23/10/2024 12:23:25, Transaction ID: TX026616, Rut tien - 1 VND
 23/10/2024 22:10:39, Transaction ID: TX010603, Rut tien - 444 VND
 23/10/2024 23:19:08, Transaction ID: TX024022, Rut tien - 1 VND
+29/10/2024 13:08:07, Transaction ID: TX024315, Rut tien - 100 VND
+30/10/2024 22:11:18, Transaction ID: TX019673, Rut tien - 1 VND
+30/10/2024 22:12:05, Transaction ID: TX019827, Rut tien - 1 VND
+31/10/2024 12:10:53, Transaction ID: TX020337, Rut tien - 1 VND
+31/10/2024 12:24:55, Transaction ID: TX023086, Rut tien - 1 VND
+31/10/2024 12:36:19, Transaction ID: TX025320, Rut tien - 1 VND
+31/10/2024 12:45:25, Transaction ID: TX027103, Rut tien - 1 VND
+31/10/2024 12:53:13, Transaction ID: TX028631, Rut tien - 1 VND
+31/10/2024 12:54:37, Transaction ID: TX028905, Rut tien - 64886 VND

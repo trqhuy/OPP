@@ -43,7 +43,7 @@ void Oder_1(Admin admin) {
 	cout <<"|"<< setw(39) << (char)186 << "          TAO NGAN HANG MOI             " << (char)186   << setw(39) <<"|"<< "\n";
 	cout <<"|"<< setw(39) << (char)200 << string(40, (char)205) << (char)188 						<< setw(39) <<"|"<< "\n";
 	weigh();
-	cout <<"Nhap ten cua ngan hang can tao ->";
+	cout <<"Nhap ID ngan hang can tao ->";
 	cin >> idBank;
 	admin.taoNganHang(idBank);
 	wait();

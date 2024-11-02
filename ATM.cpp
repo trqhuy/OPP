@@ -1,4 +1,5 @@
 #include "ATM.h"
+#include "Menu.h"
 #include <fstream>
 #include <sstream>//ham xu ly chuoi, dung de tach chuoi
 #include <ctime>
@@ -7,6 +8,7 @@
 #include <cstdlib>
 #include <windows.h>
 #include <string.h>
+
 using namespace std;
 
 ATM::ATM(string idATM, float soDuATM, string diaChi, bool trangThai, string nganHang)
@@ -107,7 +109,7 @@ void ATM::ghiThongTinKhachHang() {
 
 void ATM::ghiThongTinATM() {
     string ATMFileName = "atm_info.txt";
-    ofstream outputFile(ATMFileName, ios::app);  // S? d?ng ch? d? append (ios::app) d? ghi thêm vào cu?i file
+    ofstream outputFile(ATMFileName, ios::app);
 
     if (outputFile.is_open()) {
         outputFile << idATM << "," << fixed << setprecision(0) << soDuATM << "," << diaChi << "," 
@@ -145,23 +147,17 @@ void ATM::capNhatSoDuATM() {
 		string line;
 		while (getline(inputFile, line)) {
 			stringstream ss(line);
-			string id, diaChi, nganHang, trangThaiStr;
+			string id, diaChi, trangThai;
 			float soDu;
-			bool trangThai;
 
 			getline(ss, id, ',');
 			ss >> soDu;
 			ss.ignore();
 			getline(ss, diaChi, ',');
-			getline(ss, trangThaiStr, ',');
-			trangThai = (trangThaiStr == "Hoat Dong");
-			getline(ss, nganHang, ',');
+			getline(ss, trangThai);
 
 			if (id == idATM) {
-				// Write updated ATM balance
-				tempFile << idATM << "," << soDuATM << "," << diaChi << ","
-				         << (trangThaiHoatDong ? "Hoat Dong" : "Khong Hoat Dong") << ","
-				         << nganHangQuanLy << endl;
+				tempFile << idATM << "," << fixed << setprecision(0) << soDuATM << "," << diaChi << "," << trangThai << endl;
 			} else {
 				tempFile << line << endl;
 			}
@@ -172,7 +168,6 @@ void ATM::capNhatSoDuATM() {
 
 		remove("atm_info.txt");
 		rename((idBank + "_temp.txt").c_str(), "atm_info.txt");
-//		rename(("_temp.txt").c_str(), "atm_info.txt");
 
 
 	} else {

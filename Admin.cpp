@@ -18,17 +18,48 @@ void Admin::themATM(ATM atm) {
 }
 
 void Admin::inDanhSachATM() {
-	ifstream atmInfoFile("atm_info.txt");
-	if (atmInfoFile.is_open()) {
-		string line;
-		int count = 1;
-		while (getline(atmInfoFile, line)) {
-			cout << count << ". " << line << endl;
-			count++;
-		}
-		atmInfoFile.close();
+    ifstream atmInfoFile("atm_info.txt");
+    if (atmInfoFile.is_open()) {
+        string line;
+        int count = 1;
+        
+        weigh();
+		cout <<"|"<< setw(39) << (char)201 << string(40, (char)205) << (char)187 						<< setw(39) <<"|" << "\n";
+		cout <<"|"<< setw(39) << (char)186 << "           DANH SACH CAY ATM            " << (char)186   << setw(39) <<"|"<< "\n";
+		cout <<"|"<< setw(39) << (char)200 << string(40, (char)205) << (char)188 						<< setw(39) <<"|"<< "\n";
+        
+        weigh();
+        cout << "|" << setw(8) << "STT" << setw(20) << "ID ATM" 
+             << setw(20) << "So du ATM" << setw(30) << "Dia chi ATM" 
+             << setw(30) << "Trang thai hoat dong" << setw(11) << "|" << "\n";
+        cout << "|" << setfill('-') << setw(119) << "|" << setfill(' ') << "\n";
+        
+        // Process each line
+        while (getline(atmInfoFile, line)) {
+            string ID, soDu, diaChi, trangThai;
+            stringstream ss(line);
+
+            getline(ss, ID, ',');
+            getline(ss, soDu, ',');
+            getline(ss, diaChi, ',');
+            getline(ss, trangThai);
+
+            cout << "|" << setw(8) << count << setw(20) << ID 
+                 << setw(20) << soDu << setw(30) << diaChi 
+                 << setw(30) << trangThai << setw(11) << "|" << "\n";
+            
+            count++;
+        }
+		
+
+		weigh();
+//		logFile.close();
 	} else {
-		cout << "Khong the mo file de doc thong tin ATM!" << endl;
+		cout << "+======================================================================================================================+" << endl;
+		cout << "|                                      ??????????????????????????????????????????                                      |" << endl;
+		cout << "|                                      ?  KHONG THE MO FILE LICH SU GIAO DICH   ?                                      |" << endl;
+		cout << "|                                      ??????????????????????????????????????????                                      |" << endl;
+		cout << "+======================================================================================================================+" << endl;
 	}
 }
 
