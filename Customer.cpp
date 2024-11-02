@@ -3,23 +3,23 @@ using namespace std;
 Customer::Customer(string soThe, string tenChuThe, string pin, float soDu)
     : soThe(soThe), tenChuThe(tenChuThe), PIN(pin), soDu(soDu) {}
 
-string Customer::getSoThe() { //lay so the
+string Customer::getSoThe() {
     return soThe;
 }
 
-string Customer::getTenChuThe() { //lay ten chu the
+string Customer::getTenChuThe() {
     return tenChuThe;
 }
 
-string Customer::getPin() { //lay so pin
+string Customer::getPin() {
     return PIN;
 }
 
-float Customer::getSoDu() { //lay so du
+float Customer::getSoDu() {
     return soDu;
 }
 
-void Customer::setSoDu(float newSoDu) { //kiem tra so du
+void Customer::setSoDu(float newSoDu) {
     soDu = newSoDu;
 }
 
