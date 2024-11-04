@@ -1,25 +1,25 @@
 #include "Customer.h"
 using namespace std;
 Customer::Customer(string soThe, string tenChuThe, string pin, float soDu)
-    : soThe(soThe), tenChuThe(tenChuThe), PIN(pin), soDu(soDu) {}
+	: soThe(soThe), tenChuThe(tenChuThe), PIN(pin), soDu(soDu) {}
 
 string Customer::getSoThe() {
-    return soThe;
+	return soThe;
 }
 
 string Customer::getTenChuThe() {
-    return tenChuThe;
+	return tenChuThe;
 }
 
 string Customer::getPin() {
-    return PIN;
+	return PIN;
 }
 
 float Customer::getSoDu() {
-    return soDu;
+	return soDu;
 }
 
 void Customer::setSoDu(float newSoDu) {
-    soDu = newSoDu;
+	soDu = newSoDu;
 }
 

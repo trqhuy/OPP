@@ -4,9 +4,9 @@ using namespace std;
 #include <conio.h> // Ch? s? d?ng trong m?t s? tr?nh biên d?ch
 
 int wait() {
-    cout << setw(60+27) << "--------------Nhan phim bat ki de thoat--------------\n";
-    getch();
-    return 0;
+	cout << setw(60+27) << "--------------Nhan phim bat ki de thoat--------------\n";
+	getch();
+	return 0;
 }
 
 void weigh() {
@@ -28,6 +28,10 @@ void Print_Menu() {
 	cout <<"|"<< setw(39) << (char)186 << " 6. Nap tien vao tai khoan              " << (char)186 << setw(39) <<"|" << "\n";
 	cout <<"|"<< setw(39) << (char)186 << " 7. Tao ATM                             " << (char)186 << setw(39) <<"|" << "\n";
 	cout <<"|"<< setw(39) << (char)186 << " 8. In danh sach ATM                    " << (char)186 << setw(39) <<"|" << "\n";
+	cout <<"|"<< setw(39) << (char)186 << " 9. Kiem tra lich su giao dich tai khoan" << (char)186 << setw(39) <<"|" << "\n";
+	cout <<"|"<< setw(39) << (char)186 << " 10.Xoa cay ATM                         " << (char)186 << setw(39) <<"|" << "\n";
+	cout <<"|"<< setw(39) << (char)186 << " 11.Thay doi thong tin ATM              " << (char)186 << setw(39) <<"|" << "\n";
+	cout <<"|"<< setw(39) << (char)186 << " 12.Xoa ngan hang                       " << (char)186 << setw(39) <<"|" << "\n";
 	cout <<"|"<< setw(39) << (char)186 << " 0. Thoat                               " << (char)186 << setw(39) <<"|" << "\n";
 	cout <<"|"<< setw(39) << (char)200 << string(40, (char)205) << (char)188 << setw(39) <<"|"<< "\n";
 	weigh();
@@ -65,7 +69,7 @@ void Oder_3(Admin admin) {
 	cout <<"|"<< setw(39) << (char)186 << "      TAO TAI KHOAN NGAN HANG MOI       " << (char)186   << setw(39) <<"|"<< "\n";
 	cout <<"|"<< setw(39) << (char)200 << string(40, (char)205) << (char)188 						<< setw(39) <<"|"<< "\n";
 	weigh();
-	
+
 	string soThe, tenChuThe, pin;
 	float soDu;
 	cout << "Nhap so the (3 so dau se la ID ngan hang)->";
@@ -84,14 +88,14 @@ void Oder_3(Admin admin) {
 }
 
 void Oder_4(Admin admin) {
-	
+
 	system("cls");
 	weigh();
 	cout <<"|"<< setw(39) << (char)201 << string(40, (char)205) << (char)187 						<< setw(39) <<"|"<< "\n";
 	cout <<"|"<< setw(39) << (char)186 << "       XOA TAI KHOAN NAGN HANG          " << (char)186   << setw(39) <<"|"<< "\n";
 	cout <<"|"<< setw(39) << (char)200 << string(40, (char)205) << (char)188 						<< setw(39) <<"|"<< "\n";
 	weigh();
-	
+
 	string soThe;
 	cout << "Nhap so the-> ";
 	cin >> soThe;
@@ -107,7 +111,7 @@ void Oder_5(Admin admin) {
 	cout << "Nhap ma PIN: ";
 	cin >> PIN;
 
-	ATM atm("", 0, "", false, "");
+	ATM atm("", 0.0, "", false);
 	admin.chonATM(atm);
 
 	if (atm.timSTK(soThe) && atm.checkPIN(PIN)) {
@@ -161,15 +165,48 @@ void Oder_7(Admin admin) {
 	getline(cin, diaChi);
 	cout << "Nhap trang thai ATM (1 cho hoat dong, 0 cho khong hoat dong): ";
 	cin >> trangThai;
-	cout << "Nhap ID ngan hang quan ly: ";
-	cin >> nganHangQuanLy;
 
-	ATM newATM(idATM, soDuATM, diaChi, trangThai, nganHangQuanLy);
+	ATM newATM(idATM, soDuATM, diaChi, trangThai);
 	admin.themATM(newATM);
 	wait();
 }
 
 void Oder_8(Admin admin) {
+	system("cls");
 	admin.inDanhSachATM();
+	wait();
+}
+
+void Oder_9(Admin admin) {
+	system("cls");
+	string account;
+	cout<<"Nhap so tai khoan kiem tra lich si gioa dich ->";
+	cin>> account;
+	admin.xemLichSuGiaoDichKhachHang(account);
+	wait();
+}
+
+void Oder_10(Admin admin) {
+	system("cls");
+	admin.xoaATM();
+	wait();
+}
+void Oder_11(Admin admin) {
+	system("cls");
+	admin.thayDoiThongTinATM();
+	wait();
+}
+
+void Oder_12(Admin admin) {
+	system("cls");
+	string idBank;
+	weigh();
+	cout <<"|"<< setw(39) << (char)201 << string(40, (char)205) << (char)187 						<< setw(39) <<"|" << "\n";
+	cout <<"|"<< setw(39) << (char)186 << "            XOA NGAN HANG               " << (char)186   << setw(39) <<"|"<< "\n";
+	cout <<"|"<< setw(39) << (char)200 << string(40, (char)205) << (char)188 						<< setw(39) <<"|"<< "\n";
+	weigh();
+	cout <<"Nhap ID ngan hang can xao ->";
+	cin >> idBank;
+	admin.xoaNganHang(idBank);
 	wait();
 }

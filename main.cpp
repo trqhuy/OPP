@@ -56,11 +56,32 @@ int main() {
 				system("cls");
 				break;
 			}
+			case 9: {
+				Oder_9(admin);
+				system("cls");
+				break;
+			}
+			case 10: {
+				Oder_10(admin);
+				system("cls");
+				break;
+			}
+			case 11: {
+				Oder_11(admin);
+				system("cls");
+				break;
+			}
+			case 12: {
+				Oder_12(admin);
+				system("cls");
+				break;
+			}
 			case 0:
 				cout << "Thoat chuong trinh." << endl;
 				break;
 			default:
 				cout << "Lua chon khong hop le. Vui long chon lai." << endl;
+				system("cls");
 		}
 		cout << endl;
 	} while (choice != 0);

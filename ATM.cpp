@@ -11,8 +11,8 @@
 
 using namespace std;
 
-ATM::ATM(string idATM, float soDuATM, string diaChi, bool trangThai, string nganHang)
-	: Cust("", "", "", 0), idATM(idATM), soDuATM(soDuATM), diaChi(diaChi), trangThaiHoatDong(trangThai), nganHangQuanLy(nganHang) {}
+ATM::ATM(string idATM, float soDuATM, string diaChi, bool trangThai)
+	: Cust("", "", "", 0), idATM(idATM), soDuATM(soDuATM), diaChi(diaChi), trangThaiHoatDong(trangThai) {}
 
 bool ATM::timSTK(string soThe) {
 	string idBank = soThe.substr(0, 3);
@@ -93,7 +93,7 @@ void ATM::ghiThongTinKhachHang() {
 			string tk;
 			getline(ss, tk, ',');
 			if (tk == Cust.soThe) {
-				tempFile << Cust.soThe << "," << Cust.tenChuThe << "," << Cust.PIN << "," << Cust.soDu << endl;
+				tempFile << Cust.soThe << "," << Cust.tenChuThe << "," << Cust.PIN << "," <<  fixed << setprecision(0) << Cust.soDu  << endl;
 			} else {
 				tempFile << line << endl;
 			}
@@ -108,16 +108,16 @@ void ATM::ghiThongTinKhachHang() {
 }
 
 void ATM::ghiThongTinATM() {
-    string ATMFileName = "atm_info.txt";
-    ofstream outputFile(ATMFileName, ios::app);
+	string ATMFileName = "atm_info.txt";
+	ofstream outputFile(ATMFileName, ios::app);
 
-    if (outputFile.is_open()) {
-        outputFile << idATM << "," << fixed << setprecision(0) << soDuATM << "," << diaChi << "," 
-                   << (trangThaiHoatDong ? "Hoat Dong" : "Khong Hoat Dong") << endl;
-        outputFile.close();
-    } else {
-        cout << "Khong the mo file de ghi!" << endl;
-    }
+	if (outputFile.is_open()) {
+		outputFile << idATM << "," << fixed << setprecision(0) << soDuATM << "," << diaChi << ","
+		           << (trangThaiHoatDong ? "Hoat Dong" : "Khong Hoat Dong") << endl;
+		outputFile.close();
+	} else {
+		cout << "Khong the mo file de ghi!" << endl;
+	}
 }
 
 
@@ -200,8 +200,6 @@ void ATM::rutTien(float soTien) {
 
 	printReceipt("Rut tien", soTien, transactionId);
 }
-
-
 
 void ATM::napTien(float soTien) {
 	Cust.setSoDu(Cust.soDu + soTien);

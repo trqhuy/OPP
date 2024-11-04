@@ -20,6 +20,10 @@ void Oder_4(Admin admin);
 void Oder_5(Admin admin);
 void Oder_6(Admin admin);
 void Oder_7(Admin admin);
-void Oder_8(Admin admin); 
+void Oder_8(Admin admin);
+void Oder_9(Admin admin);
+void Oder_10(Admin admin);
+void Oder_11(Admin admin);
+void Oder_12(Admin admin);
 #endif
 
