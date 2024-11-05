@@ -34,7 +34,6 @@ void Admin::inDanhSachATM() {
 		     << setw(30) << "Trang thai hoat dong" << setw(11) << "|" << "\n";
 		cout << "|" << setfill('-') << setw(119) << "|" << setfill(' ') << "\n";
 
-		// Process each line
 		while (getline(atmInfoFile, line)) {
 			string ID, soDu, diaChi, trangThai;
 			stringstream ss(line);
@@ -211,6 +210,59 @@ void Admin::xemLichSuGiaoDichKhachHang(string soThe) {
 
 		weigh();
 		transactionFile.close();
+	} else {
+		cout << "+======================================================================================================================+" << endl;
+		cout << "|                                      ??????????????????????????????????????????                                      |" << endl;
+		cout << "|                                      ?  KHONG THE MO FILE LICH SU GIAO DICH   ?                                      |" << endl;
+		cout << "|                                      ??????????????????????????????????????????                                      |" << endl;
+		cout << "+======================================================================================================================+" << endl;
+	}
+}
+
+void Admin::xemLichSuGiaoDichATM(string idATM) {
+	ifstream logFile(idATM + "_transaction_history.txt");
+	if (logFile.is_open()) {
+
+		int count=1;
+		string temp;
+		string line;
+
+		weigh();
+		cout <<"|"<< setw(39) << (char)201 << string(40, (char)205) << (char)187 						<< setw(39) <<"|" << "\n";
+		cout <<"|"<< setw(39) << (char)186 << "          LICH SU GIAO DICH             " << (char)186   << setw(39) <<"|"<< "\n";
+		cout <<"|"<< setw(39) << (char)200 << string(40, (char)205) << (char)188 						<< setw(39) <<"|"<< "\n";
+		weigh();
+
+		cout <<"|"<< setw(119) <<"|"<< "\n";
+		cout <<"|"<< setw(8)<< "STT" << setw(20) <<"Ma giao dich" <<setw(20) <<"Tai khoan" << setw(30)<< "So tien" << setw(30) <<"Ngay thuc hien" << setw(11) <<"|"<< "\n";
+		cout <<"|"<< setw(119) <<"|"<< "\n";
+
+		while (getline(logFile, line)) {
+			string date, time, transactionID, amount, account;
+			stringstream ss(line);
+
+			getline(ss, date, ',');
+
+			string temp;
+			getline(ss, temp, ':');
+			getline(ss, transactionID, ',');
+
+			getline(ss, amount, ',');
+
+			getline(ss, temp, ':');
+			getline(ss, account);
+
+			const int totalWidth = 120;
+
+			cout <<"|"<< setw(119) <<"|"<< "\n";
+			cout <<"|"<< setw(8)<< count << setw(20) <<transactionID <<setw(20) << account << setw(30)<< amount << setw(30) << date << setw(11) <<"|"<< "\n";
+			cout <<"|"<< setw(119) <<"|"<< "\n";
+
+			count++;
+		}
+
+		weigh();
+		logFile.close();
 	} else {
 		cout << "+======================================================================================================================+" << endl;
 		cout << "|                                      ??????????????????????????????????????????                                      |" << endl;

@@ -20,6 +20,7 @@ class ATM {
 
 		bool timSTK(string soThe);
 		bool checkPIN(string PIN);
+		void ghiLichSuATM(string action, float amount, const string& transactionId);
 		void ghiLichSu(string action, float amount, const string& transactionId);
 		void ghiLichSuNganHang(string action, float amount, const string& transactionId);
 		void rutTien(float soTien);

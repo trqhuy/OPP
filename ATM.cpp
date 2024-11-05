@@ -60,6 +60,24 @@ void ATM::ghiLichSu(string action, float amount, const string& transactionId) {
 	}
 }
 
+void ATM::ghiLichSuATM(string action, float amount, const string& transactionId) {
+	string bankTransactionFileName = idATM + "_transaction_history.txt";
+	ofstream bankLogFile(bankTransactionFileName, ios::app);
+	if (bankLogFile.is_open()) {
+		time_t now = time(0);
+		tm *ltm = localtime(&now);
+
+		char dt[20];
+		strftime(dt, sizeof(dt), "%d/%m/%Y %H:%M:%S", ltm);
+
+
+		bankLogFile << dt << ", "<< "Transaction ID: " << transactionId <<", " << action << " - " << amount << " VND, Tai khoan: " << Cust.soThe  << endl;
+		bankLogFile.close();
+	} else {
+		cout << "Khong the mo file lich su giao dich ngan hang!" << endl;
+	}
+}
+
 void ATM::ghiLichSuNganHang(string action, float amount, const string& transactionId) {
 	string idBank = Cust.soThe.substr(0, 3);
 	string bankTransactionFileName = idBank + "_transaction_history.txt";
@@ -192,6 +210,7 @@ void ATM::rutTien(float soTien) {
 
 	string transactionId = generateTransactionId();
 	ghiLichSu("Rut tien", soTien, transactionId);
+	ghiLichSuATM("Rut tien", soTien, transactionId);
 	ghiLichSuNganHang("Rut tien", soTien, transactionId);
 
 	ghiThongTinKhachHang();

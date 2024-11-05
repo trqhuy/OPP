@@ -13,17 +13,25 @@ using namespace std;
 string make_space(int n);
 void weigh();
 void Print_Menu();
-void Oder_1(Admin admin);
-void Oder_2(Admin admin);
-void Oder_3(Admin admin);
-void Oder_4(Admin admin);
-void Oder_5(Admin admin);
-void Oder_6(Admin admin);
-void Oder_7(Admin admin);
-void Oder_8(Admin admin);
-void Oder_9(Admin admin);
-void Oder_10(Admin admin);
-void Oder_11(Admin admin);
-void Oder_12(Admin admin);
+void Print_Menu_1();
+void Print_Menu_2();
+void Print_Menu_3();
+
+void Oder1_1(Admin admin);
+void Oder1_2(Admin admin);
+void Oder1_3(Admin admin);
+
+void Oder2_1(Admin admin);
+void Oder2_2(Admin admin);
+void Oder2_3(Admin admin);
+void Oder2_4(Admin admin);
+void Oder2_5(Admin admin);
+
+void Oder3_1(Admin admin);
+void Oder3_2(Admin admin);
+void Oder3_3(Admin admin);
+void Oder3_4(Admin admin);
+void Oder3_5(Admin admin);
+
 #endif
 

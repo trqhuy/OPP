@@ -8,7 +8,7 @@ using namespace std;
 
 int main() {
 	Admin admin;
-	int choice;
+	int choice,choice1,choice2,choice3;
 
 	do {
 		Print_Menu();
@@ -16,68 +16,131 @@ int main() {
 
 		switch (choice) {
 			case 1: {
-				Oder_1(admin);
 				system("cls");
+				do {
+					Print_Menu_1();
+					cin >> choice1;
+
+					switch (choice1) {
+						case 1: {
+							Oder1_1(admin);
+							system("cls");
+							break;
+						}
+						case 2: {
+							Oder1_2(admin);
+							system("cls");
+							break;
+						}
+						case 3: {
+							Oder1_3(admin);
+							system("cls");
+							break;
+						}
+						case 0: {
+							cout << "Thoat chuong trinh." << endl;
+							system("cls");
+							break;
+						}
+						default:
+							cout << "Lua chon khong hop le. Vui long chon lai." << endl;
+							system("cls");
+					}
+					cout << endl;
+				} while (choice1 != 0);
 				break;
 			}
 			case 2: {
-				Oder_2(admin);
-				system("cls");
+				do {
+					Print_Menu_2();
+					cin >> choice2;
+
+					switch (choice2) {
+						case 1: {
+							Oder2_1(admin);
+							system("cls");
+							break;
+						}
+						case 2: {
+							Oder2_2(admin);
+							system("cls");
+							break;
+						}
+						case 3: {
+							Oder2_3(admin);
+							system("cls");
+							break;
+						}
+						case 4: {
+							Oder2_4(admin);
+							system("cls");
+							break;
+						}
+						case 5: {
+							Oder2_5(admin);
+							system("cls");
+							break;
+						}
+						case 0: {
+							cout << "Thoat chuong trinh." << endl;
+							system("cls");
+							break;
+						}
+						default:
+							cout << "Lua chon khong hop le. Vui long chon lai." << endl;
+							system("cls");
+					}
+					cout << endl;
+				} while (choice2 != 0);
 				break;
 			}
 			case 3: {
-				Oder_3(admin);
-				system("cls");
-				break;
-			}
-			case 4: {
-				Oder_4(admin);
-				system("cls");
-				break;
-			}
-			case 5: {
-				Oder_5(admin);
-				system("cls");
-				break;
-			}
+				do {
+					Print_Menu_3();
+					cin >> choice3;
 
-			case 6: {
-				Oder_6(admin);
-				system("cls");
-				break;
-			}
-			case 7: {
-				Oder_7(admin);
-				system("cls");
-				break;
-			}
-			case 8: {
-				Oder_8(admin);
-				system("cls");
-				break;
-			}
-			case 9: {
-				Oder_9(admin);
-				system("cls");
-				break;
-			}
-			case 10: {
-				Oder_10(admin);
-				system("cls");
-				break;
-			}
-			case 11: {
-				Oder_11(admin);
-				system("cls");
-				break;
-			}
-			case 12: {
-				Oder_12(admin);
-				system("cls");
+					switch (choice3) {
+						case 1: {
+							Oder3_1(admin);
+							system("cls");
+							break;
+						}
+						case 2: {
+							Oder3_2(admin);
+							system("cls");
+							break;
+						}
+						case 3: {
+							Oder3_3(admin);
+							system("cls");
+							break;
+						}
+						case 4: {
+							Oder3_4(admin);
+							system("cls");
+							break;
+						}
+						case 5: {
+							Oder3_5(admin);
+							system("cls");
+							break;
+						}
+						case 0: {
+							cout << "Thoat chuong trinh." << endl;
+							system("cls");
+							break;
+						}
+						default:
+							cout << "Lua chon khong hop le. Vui long chon lai." << endl;
+							system("cls");
+					}
+					cout << endl;
+				} while (choice3 != 0);
 				break;
 			}
 			case 0:
 				cout << "Thoat chuong trinh." << endl;
+				system("cls");
 				break;
 			default:
 				cout << "Lua chon khong hop le. Vui long chon lai." << endl;

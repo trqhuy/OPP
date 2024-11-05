@@ -17,6 +17,7 @@ class Admin {
 		void taoNganHang(string idBank);
 		void xemLichSuGiaoDich(string idBank);
 		void xemLichSuGiaoDichKhachHang(string soThe);
+		void xemLichSuGiaoDichATM(string idATM);
 		void xoaTaiKhoan(string soThe);
 		void chonATM(ATM& atm);
 		void xoaATM();

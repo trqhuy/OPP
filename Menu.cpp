@@ -1,7 +1,6 @@
 #include"Menu.h"
+#include <conio.h>
 using namespace std;
-
-#include <conio.h> // Ch? s? d?ng trong m?t s? tr?nh biên d?ch
 
 int wait() {
 	cout << setw(60+27) << "--------------Nhan phim bat ki de thoat--------------\n";
@@ -20,18 +19,55 @@ void Print_Menu() {
 	cout <<"|"<< setw(39) << (char)201 << string(40, (char)205) << (char)187 << setw(39) <<"|" << "\n";
 	cout <<"|"<< setw(39) << (char)186 << "              QUAN LY ATM               " << (char)186 << setw(39) <<"|"<< "\n";
 	cout <<"|"<< setw(39) << (char)204 << string(40, (char)205) << (char)185 << setw(39) <<"|" << "\n";
-	cout <<"|"<< setw(39) << (char)186 << " 1. Tao ngan hang moi                   " << (char)186 << setw(39) <<"|" << "\n";
-	cout <<"|"<< setw(39) << (char)186 << " 2. In lich su giao dich cua ngan hang  " << (char)186 << setw(39) <<"|" << "\n";
-	cout <<"|"<< setw(39) << (char)186 << " 3. Them tai khoan ngan hang            " << (char)186 << setw(39) <<"|" << "\n";
-	cout <<"|"<< setw(39) << (char)186 << " 4. Xoa tai khoan ngan hang             " << (char)186 << setw(39) <<"|" << "\n";
-	cout <<"|"<< setw(39) << (char)186 << " 5. Rut tien tu tai khoan               " << (char)186 << setw(39) <<"|" << "\n";
-	cout <<"|"<< setw(39) << (char)186 << " 6. Nap tien vao tai khoan              " << (char)186 << setw(39) <<"|" << "\n";
-	cout <<"|"<< setw(39) << (char)186 << " 7. Tao ATM                             " << (char)186 << setw(39) <<"|" << "\n";
-	cout <<"|"<< setw(39) << (char)186 << " 8. In danh sach ATM                    " << (char)186 << setw(39) <<"|" << "\n";
-	cout <<"|"<< setw(39) << (char)186 << " 9. Kiem tra lich su giao dich tai khoan" << (char)186 << setw(39) <<"|" << "\n";
-	cout <<"|"<< setw(39) << (char)186 << " 10.Xoa cay ATM                         " << (char)186 << setw(39) <<"|" << "\n";
-	cout <<"|"<< setw(39) << (char)186 << " 11.Thay doi thong tin ATM              " << (char)186 << setw(39) <<"|" << "\n";
-	cout <<"|"<< setw(39) << (char)186 << " 12.Xoa ngan hang                       " << (char)186 << setw(39) <<"|" << "\n";
+	cout <<"|"<< setw(39) << (char)186 << " 1. NGAN HANG                           " << (char)186 << setw(39) <<"|" << "\n";
+	cout <<"|"<< setw(39) << (char)186 << " 2. TAI KHOAN NGAN HANG                 " << (char)186 << setw(39) <<"|" << "\n";
+	cout <<"|"<< setw(39) << (char)186 << " 3. ATM                                 " << (char)186 << setw(39) <<"|" << "\n";
+	cout <<"|"<< setw(39) << (char)186 << " 0. Thoat                               " << (char)186 << setw(39) <<"|" << "\n";
+	cout <<"|"<< setw(39) << (char)200 << string(40, (char)205) << (char)188 << setw(39) <<"|"<< "\n";
+	weigh();
+	cout <<"Nhap lua chon cua ban ->";
+}
+
+void Print_Menu_1() {//Ngan hang
+	weigh();
+	cout <<"|"<< setw(39) << (char)201 << string(40, (char)205) << (char)187 << setw(39) <<"|" << "\n";
+	cout <<"|"<< setw(39) << (char)186 << "               NGAN HANG                " << (char)186 << setw(39) <<"|"<< "\n";
+	cout <<"|"<< setw(39) << (char)204 << string(40, (char)205) << (char)185 << setw(39) <<"|" << "\n";
+	cout <<"|"<< setw(39) << (char)186 << " 1. Tao ngan hang                       " << (char)186 << setw(39) <<"|" << "\n";
+	cout <<"|"<< setw(39) << (char)186 << " 2. Xoa Ngan Hang                       " << (char)186 << setw(39) <<"|" << "\n";
+	cout <<"|"<< setw(39) << (char)186 << " 3. In lich su giao dich cua ngan hang  " << (char)186 << setw(39) <<"|" << "\n";
+	cout <<"|"<< setw(39) << (char)186 << " 0. Thoat                               " << (char)186 << setw(39) <<"|" << "\n";
+	cout <<"|"<< setw(39) << (char)200 << string(40, (char)205) << (char)188 << setw(39) <<"|"<< "\n";
+	weigh();
+	cout <<"Nhap lua chon cua ban ->";
+}
+
+void Print_Menu_2() {//Tai khoan ngan hang
+	weigh();
+	cout <<"|"<< setw(39) << (char)201 << string(40, (char)205) << (char)187 << setw(39) <<"|" << "\n";
+	cout <<"|"<< setw(39) << (char)186 << "         TAI KHOAN NGAN HANG            " << (char)186 << setw(39) <<"|"<< "\n";
+	cout <<"|"<< setw(39) << (char)204 << string(40, (char)205) << (char)185 << setw(39) <<"|" << "\n";
+	cout <<"|"<< setw(39) << (char)186 << " 1. Tao tai khoan ngan hang             " << (char)186 << setw(39) <<"|" << "\n";
+	cout <<"|"<< setw(39) << (char)186 << " 2. Xoa tai khoan Ngan Hang             " << (char)186 << setw(39) <<"|" << "\n";
+	cout <<"|"<< setw(39) << (char)186 << " 3. Rut tien tu cay ATM                 " << (char)186 << setw(39) <<"|" << "\n";
+	cout <<"|"<< setw(39) << (char)186 << " 4. Nap tien tu cay ATM                 " << (char)186 << setw(39) <<"|" << "\n";
+	cout <<"|"<< setw(39) << (char)186 << " 5. In lich su giao dich cua tai khoan  " << (char)186 << setw(39) <<"|" << "\n";
+	cout <<"|"<< setw(39) << (char)186 << " 0. Thoat                               " << (char)186 << setw(39) <<"|" << "\n";
+	cout <<"|"<< setw(39) << (char)200 << string(40, (char)205) << (char)188 << setw(39) <<"|"<< "\n";
+	weigh();
+	cout <<"Nhap lua chon cua ban ->";
+}
+
+void Print_Menu_3() {ATM
+	weigh();
+	cout <<"|"<< setw(39) << (char)201 << string(40, (char)205) << (char)187 << setw(39) <<"|" << "\n";
+	cout <<"|"<< setw(39) << (char)186 << "                 ATM                    " << (char)186 << setw(39) <<"|"<< "\n";
+	cout <<"|"<< setw(39) << (char)204 << string(40, (char)205) << (char)185 << setw(39) <<"|" << "\n";
+	cout <<"|"<< setw(39) << (char)186 << " 1. Tao cay ATM                         " << (char)186 << setw(39) <<"|" << "\n";
+	cout <<"|"<< setw(39) << (char)186 << " 2. Xoa cay ATM                         " << (char)186 << setw(39) <<"|" << "\n";
+	cout <<"|"<< setw(39) << (char)186 << " 3. In danh sach cac cay ATM            " << (char)186 << setw(39) <<"|" << "\n";
+	cout <<"|"<< setw(39) << (char)186 << " 4. In lich su giao dich cua ATM        " << (char)186 << setw(39) <<"|" << "\n";
+	cout <<"|"<< setw(39) << (char)186 << " 5. Thay doi thong tin cua ATM          " << (char)186 << setw(39) <<"|" << "\n";
 	cout <<"|"<< setw(39) << (char)186 << " 0. Thoat                               " << (char)186 << setw(39) <<"|" << "\n";
 	cout <<"|"<< setw(39) << (char)200 << string(40, (char)205) << (char)188 << setw(39) <<"|"<< "\n";
 	weigh();
@@ -39,7 +75,7 @@ void Print_Menu() {
 }
 
 
-void Oder_1(Admin admin) {
+void Oder1_1(Admin admin) {//tao ngan hang
 	system("cls");
 	string idBank;
 	weigh();
@@ -53,7 +89,21 @@ void Oder_1(Admin admin) {
 	wait();
 }
 
-void Oder_2(Admin admin) {
+void Oder1_2(Admin admin) {//xoa ngan hang
+	system("cls");
+	string idBank;
+	weigh();
+	cout <<"|"<< setw(39) << (char)201 << string(40, (char)205) << (char)187 						<< setw(39) <<"|" << "\n";
+	cout <<"|"<< setw(39) << (char)186 << "            XOA NGAN HANG               " << (char)186   << setw(39) <<"|"<< "\n";
+	cout <<"|"<< setw(39) << (char)200 << string(40, (char)205) << (char)188 						<< setw(39) <<"|"<< "\n";
+	weigh();
+	cout <<"Nhap ID ngan hang can xao ->";
+	cin >> idBank;
+	admin.xoaNganHang(idBank);
+	wait();
+}
+
+void Oder1_3(Admin admin) {//in lich su giao dich cua ngan hang
 	system("cls");
 	string idBank;
 	cout << "Nhap ID ngan hang ->";
@@ -62,7 +112,7 @@ void Oder_2(Admin admin) {
 	wait();
 }
 
-void Oder_3(Admin admin) {
+void Oder2_1(Admin admin) {//tao tai khoan ngan hang
 	system("cls");
 	weigh();
 	cout <<"|"<< setw(39) << (char)201 << string(40, (char)205) << (char)187 						<< setw(39) <<"|" << "\n";
@@ -87,12 +137,12 @@ void Oder_3(Admin admin) {
 	wait();
 }
 
-void Oder_4(Admin admin) {
+void Oder2_2(Admin admin) {//xoa tai khoan ngan hang 
 
 	system("cls");
 	weigh();
 	cout <<"|"<< setw(39) << (char)201 << string(40, (char)205) << (char)187 						<< setw(39) <<"|"<< "\n";
-	cout <<"|"<< setw(39) << (char)186 << "       XOA TAI KHOAN NAGN HANG          " << (char)186   << setw(39) <<"|"<< "\n";
+	cout <<"|"<< setw(39) << (char)186 << "       XOA TAI KHOAN NGAN HANG          " << (char)186   << setw(39) <<"|"<< "\n";
 	cout <<"|"<< setw(39) << (char)200 << string(40, (char)205) << (char)188 						<< setw(39) <<"|"<< "\n";
 	weigh();
 
@@ -103,7 +153,7 @@ void Oder_4(Admin admin) {
 	wait();
 }
 
-void Oder_5(Admin admin) {
+void Oder2_3(Admin admin) {//rut tien tu cay ATM
 	string soThe, PIN;
 	float soTien;
 	cout << "Nhap so the: ";
@@ -124,7 +174,7 @@ void Oder_5(Admin admin) {
 	wait();
 }
 
-void Oder_6(Admin admin) {
+void Oder2_4(Admin admin) {//nap tien tu cay ATM
 	string soThe;
 	float soTien;
 	cout << "Nhap so the: ";
@@ -151,7 +201,16 @@ void Oder_6(Admin admin) {
 	wait();
 }
 
-void Oder_7(Admin admin) {
+void Oder2_5(Admin admin) {//in lich su giao dich cua khach hang
+	system("cls");
+	string account;
+	cout<<"Nhap so tai khoan kiem tra lich su gioa dich ->";
+	cin>> account;
+	admin.xemLichSuGiaoDichKhachHang(account);
+	wait();
+}
+
+void Oder3_1(Admin admin) {//tao cay ATM
 	string idATM, diaChi, nganHangQuanLy;
 	float soDuATM;
 	bool trangThai;
@@ -171,42 +230,31 @@ void Oder_7(Admin admin) {
 	wait();
 }
 
-void Oder_8(Admin admin) {
+void Oder3_2(Admin admin) {//xoa cay ATM
+	system("cls");
+	admin.xoaATM();
+	wait();
+}
+
+void Oder3_3(Admin admin) {//in danh sach cac cay ATM
 	system("cls");
 	admin.inDanhSachATM();
 	wait();
 }
 
-void Oder_9(Admin admin) {
+void Oder3_4(Admin admin) {//in lich su giao dich cua ATM
 	system("cls");
-	string account;
-	cout<<"Nhap so tai khoan kiem tra lich si gioa dich ->";
-	cin>> account;
-	admin.xemLichSuGiaoDichKhachHang(account);
+	string idATM;
+	cout << "Nhap ID ATM ->";
+	cin >> idATM;
+	admin.xemLichSuGiaoDichATM(idATM);
 	wait();
 }
 
-void Oder_10(Admin admin) {
-	system("cls");
-	admin.xoaATM();
-	wait();
-}
-void Oder_11(Admin admin) {
+void Oder3_5(Admin admin) {//thay doi thong tin ATM
 	system("cls");
 	admin.thayDoiThongTinATM();
 	wait();
 }
 
-void Oder_12(Admin admin) {
-	system("cls");
-	string idBank;
-	weigh();
-	cout <<"|"<< setw(39) << (char)201 << string(40, (char)205) << (char)187 						<< setw(39) <<"|" << "\n";
-	cout <<"|"<< setw(39) << (char)186 << "            XOA NGAN HANG               " << (char)186   << setw(39) <<"|"<< "\n";
-	cout <<"|"<< setw(39) << (char)200 << string(40, (char)205) << (char)188 						<< setw(39) <<"|"<< "\n";
-	weigh();
-	cout <<"Nhap ID ngan hang can xao ->";
-	cin >> idBank;
-	admin.xoaNganHang(idBank);
-	wait();
-}
+
