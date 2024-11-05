@@ -58,7 +58,7 @@ void Print_Menu_2() {//Tai khoan ngan hang
 	cout <<"Nhap lua chon cua ban ->";
 }
 
-void Print_Menu_3() {ATM
+void Print_Menu_3() {//ATM
 	weigh();
 	cout <<"|"<< setw(39) << (char)201 << string(40, (char)205) << (char)187 << setw(39) <<"|" << "\n";
 	cout <<"|"<< setw(39) << (char)186 << "                 ATM                    " << (char)186 << setw(39) <<"|"<< "\n";
@@ -243,7 +243,6 @@ void Oder3_3(Admin admin) {//in danh sach cac cay ATM
 }
 
 void Oder3_4(Admin admin) {//in lich su giao dich cua ATM
-	system("cls");
 	string idATM;
 	cout << "Nhap ID ATM ->";
 	cin >> idATM;

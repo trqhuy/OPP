@@ -23,16 +23,19 @@ int main() {
 
 					switch (choice1) {
 						case 1: {
+							system("cls");
 							Oder1_1(admin);
 							system("cls");
 							break;
 						}
 						case 2: {
+							system("cls");
 							Oder1_2(admin);
 							system("cls");
 							break;
 						}
 						case 3: {
+							system("cls");
 							Oder1_3(admin);
 							system("cls");
 							break;
@@ -52,31 +55,37 @@ int main() {
 			}
 			case 2: {
 				do {
+					system("cls");
 					Print_Menu_2();
 					cin >> choice2;
 
 					switch (choice2) {
 						case 1: {
+							system("cls");
 							Oder2_1(admin);
 							system("cls");
 							break;
 						}
 						case 2: {
+							system("cls");
 							Oder2_2(admin);
 							system("cls");
 							break;
 						}
 						case 3: {
+							system("cls");
 							Oder2_3(admin);
 							system("cls");
 							break;
 						}
 						case 4: {
+							system("cls");
 							Oder2_4(admin);
 							system("cls");
 							break;
 						}
 						case 5: {
+							system("cls");
 							Oder2_5(admin);
 							system("cls");
 							break;
@@ -96,6 +105,7 @@ int main() {
 			}
 			case 3: {
 				do {
+					system("cls");
 					Print_Menu_3();
 					cin >> choice3;
 

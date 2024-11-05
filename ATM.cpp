@@ -147,13 +147,29 @@ string ATM::generateTransactionId() {
 	return ss.str();
 }
 
+//void ATM::printReceipt(const string& action, float amount, const string& transactionId) {
+//	cout << "+=== HOA DON GIAO DICH ===+" << endl;
+//	cout << "Ma giao dich: " << transactionId << endl;
+//	cout << "Loai giao dich: " << action << endl;
+//	cout << "So tien: " << amount << " VND" << endl;
+//	cout << "So du sau giao dich: " << Cust.soDu << " VND" << endl;
+//	cout << "=========================" << endl;
+//}
+
 void ATM::printReceipt(const string& action, float amount, const string& transactionId) {
-	cout << "+=== HOA DON GIAO DICH ===+" << endl;
-	cout << "Ma giao dich: " << transactionId << endl;
-	cout << "Loai giao dich: " << action << endl;
-	cout << "So tien: " << amount << " VND" << endl;
-	cout << "So du sau giao dich: " << Cust.soDu << " VND" << endl;
-	cout << "=========================" << endl;
+	weigh();
+    cout << "|" << setw(39) << (char)201 << string(40, (char)205) << (char)187 << setw(39) << "|" << "\n";
+    cout << "|" << setw(39) << (char)186 << "          HOA DON GIAO DICH             " << (char)186 << setw(39) << "|" << "\n";
+    cout << "|" << setw(39) << (char)200 << string(40, (char)205) << (char)188 << setw(39) << "|" << "\n";
+    weigh();
+    cout << "|" << setw(119) << "|" << "\n";
+    cout << "|" << setw(30) << "Ma giao dich:" << setw(20) << transactionId << setw(69) << "|\n";
+    cout << "|" << setw(30) << "Loai giao dich:" << setw(20) << action << setw(69) << "|\n";
+    cout << "|" << setw(30) << "So tien:" << setw(20) << fixed << setprecision(2) << amount << " VND" << setw(59) << "|\n";
+    cout << "|" << setw(30) << "So du sau giao dich:" << setw(20) << fixed << setprecision(2) << Cust.soDu << " VND" << setw(49) << "|\n";
+    cout << "|" << setw(119) << "|" << "\n";
+    
+    weigh();
 }
 
 void ATM::capNhatSoDuATM() {
