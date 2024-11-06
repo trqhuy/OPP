@@ -8,6 +8,13 @@
 using namespace std;
 
 class ATM {
+	private:
+//		Customer Cust;
+//		string idATM;
+//		float soDuATM;
+//		string diaChi;
+//		bool trangThaiHoatDong;
+//		string nganHangQuanLy;
 	public:
 		Customer Cust;
 		string idATM;
@@ -17,6 +24,7 @@ class ATM {
 		string nganHangQuanLy;
 
 		ATM(string idATM, float soDuATM, string diaChi, bool trangThai);
+		
 
 		bool timSTK(string soThe);
 		bool checkPIN(string PIN);

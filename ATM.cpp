@@ -1,8 +1,8 @@
 #include "ATM.h"
 #include "Menu.h"
-#include <fstream>
+#include <fstream>//ham mo file
 #include <sstream>//ham xu ly chuoi, dung de tach chuoi
-#include <ctime>
+#include <ctime>//ham lay thoi gian
 #include <iostream>
 #include <iomanip>//tao so ngau nhien
 #include <cstdlib>
@@ -24,13 +24,13 @@ bool ATM::timSTK(string soThe) {
 			string tenChuThe, pin;
 			float soDu;
 
-			getline(ss, Cust.soThe, ',');
-			getline(ss, Cust.tenChuThe, ',');
-			getline(ss, Cust.PIN, ',');
+			getline(ss, Cust.getSoThe(), ',');
+			getline(ss, Cust.getTenChuThe(), ',');
+			getline(ss, Cust.getPin(), ',');
 			ss >> soDu;
 
-			if (Cust.soThe == soThe) {
-				Cust.soDu = soDu;
+			if (Cust.getSoThe() == soThe) {
+				Cust.soD = soDu;
 				return true;
 			}
 		}
@@ -147,15 +147,6 @@ string ATM::generateTransactionId() {
 	return ss.str();
 }
 
-//void ATM::printReceipt(const string& action, float amount, const string& transactionId) {
-//	cout << "+=== HOA DON GIAO DICH ===+" << endl;
-//	cout << "Ma giao dich: " << transactionId << endl;
-//	cout << "Loai giao dich: " << action << endl;
-//	cout << "So tien: " << amount << " VND" << endl;
-//	cout << "So du sau giao dich: " << Cust.soDu << " VND" << endl;
-//	cout << "=========================" << endl;
-//}
-
 void ATM::printReceipt(const string& action, float amount, const string& transactionId) {
 	weigh();
     cout << "|" << setw(39) << (char)201 << string(40, (char)205) << (char)187 << setw(39) << "|" << "\n";
@@ -163,10 +154,10 @@ void ATM::printReceipt(const string& action, float amount, const string& transac
     cout << "|" << setw(39) << (char)200 << string(40, (char)205) << (char)188 << setw(39) << "|" << "\n";
     weigh();
     cout << "|" << setw(119) << "|" << "\n";
-    cout << "|" << setw(30) << "Ma giao dich:" << setw(20) << transactionId << setw(69) << "|\n";
-    cout << "|" << setw(30) << "Loai giao dich:" << setw(20) << action << setw(69) << "|\n";
-    cout << "|" << setw(30) << "So tien:" << setw(20) << fixed << setprecision(2) << amount << " VND" << setw(59) << "|\n";
-    cout << "|" << setw(30) << "So du sau giao dich:" << setw(20) << fixed << setprecision(2) << Cust.soDu << " VND" << setw(49) << "|\n";
+    cout << "|" << setw(30) << "Ma giao dich:" << setw(20) << transactionId << setw(70) << "|\n";
+    cout << "|" << setw(30) << "Loai giao dich:" << setw(20) << action << setw(70) << "|\n";
+    cout << "|" << setw(30) << "So tien:" << setw(20) << fixed << setprecision(2) << amount << " VND" << setw(66) << "|\n";
+    cout << "|" << setw(30) << "So du sau giao dich:" << setw(25) << fixed << setprecision(2) << Cust.soDu << " VND" << setw(61) << "|\n";
     cout << "|" << setw(119) << "|" << "\n";
     
     weigh();
@@ -237,11 +228,19 @@ void ATM::rutTien(float soTien) {
 }
 
 void ATM::napTien(float soTien) {
-	Cust.setSoDu(Cust.soDu + soTien);
+	Cust.setSoDu(Cust.soDu - soTien);
+
+	soDuATM += soTien;
+
 	string transactionId = generateTransactionId();
 	ghiLichSu("Nap tien", soTien, transactionId);
+	ghiLichSuATM("Nap tien", soTien, transactionId);
 	ghiLichSuNganHang("Nap tien", soTien, transactionId);
+
 	ghiThongTinKhachHang();
+
+	capNhatSoDuATM();
+
 	printReceipt("Nap tien", soTien, transactionId);
 }
 

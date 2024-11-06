@@ -137,7 +137,7 @@ void Oder2_1(Admin admin) {//tao tai khoan ngan hang
 	wait();
 }
 
-void Oder2_2(Admin admin) {//xoa tai khoan ngan hang 
+void Oder2_2(Admin admin) {//xoa tai khoan ngan hang
 
 	system("cls");
 	weigh();
@@ -175,28 +175,22 @@ void Oder2_3(Admin admin) {//rut tien tu cay ATM
 }
 
 void Oder2_4(Admin admin) {//nap tien tu cay ATM
-	string soThe;
+	string soThe, PIN;
 	float soTien;
 	cout << "Nhap so the: ";
 	cin >> soThe;
+	cout << "Nhap ma PIN: ";
+	cin >> PIN;
 
-	cout << "Chon ATM:\n";
-	admin.inDanhSachATM();
-	int atmChoice;
-	cout << "Lua chon ATM: ";
-	cin >> atmChoice;
+	ATM atm("", 0.0, "", false);
+	admin.chonATM(atm);
 
-	if (atmChoice > 0 && atmChoice <= admin.danhSachATM.size()) {
-		ATM& atm = admin.danhSachATM[atmChoice - 1];
+	if (atm.timSTK(soThe) && atm.checkPIN(PIN)) {
 		cout << "Nhap so tien can nap: ";
 		cin >> soTien;
-		if (atm.timSTK(soThe)) {
-			atm.napTien(soTien);
-		} else {
-			cout << "So the khong dung." << endl;
-		}
+		atm.napTien(soTien);
 	} else {
-		cout << "Lua chon ATM khong hop le." << endl;
+		cout << "So the hoac PIN khong dung." << endl;
 	}
 	wait();
 }

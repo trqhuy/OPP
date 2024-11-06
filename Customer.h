@@ -4,6 +4,9 @@ using namespace std;
 #include <string>
 
 class Customer {
+	private:
+//		string soThe, tenChuThe, PIN;
+//		float soDu;
 	public:
 		string soThe, tenChuThe, PIN;
 		float soDu;
