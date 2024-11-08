@@ -158,6 +158,5 @@ int main() {
 		}
 		cout << endl;
 	} while (choice != 0);
-
 	return 0;
 }

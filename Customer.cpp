@@ -19,7 +19,7 @@ float Customer::getSoDu() {
 	return soDu;
 }
 
-void Customer::setSoDu(float newSoDu) {
+void Customer::set_SoDu(int newSoDu) {
 	soDu = newSoDu;
 }
 

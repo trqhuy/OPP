@@ -64,7 +64,7 @@ void Admin::inDanhSachATM() {
 
 void Admin::themKhachHang(Customer& customer) {
 	string idBank = customer.getSoThe().substr(0, 3);
-	ofstream outputFile(idBank + "_information.txt", ios::app);
+	ofstream outputFile("Bank_" + idBank + "_information.txt", ios::app);
 	if (outputFile.is_open()) {
 		outputFile << customer.getSoThe() << ","
 		           << customer.getTenChuThe() << ","
@@ -82,7 +82,7 @@ void Admin::themKhachHang(Customer& customer) {
 }
 
 void Admin::taoNganHang(string idBank) {
-	ofstream bankFile(idBank + "_information.txt");
+	ofstream bankFile("Bank_" + idBank + "_information.txt");
 	if (bankFile.is_open()) {
 		weigh();
 		cout <<"|"<< setw(39) << (char)201 << string(40, (char)205) << (char)187 						<< setw(39) <<"|" << "\n";
@@ -96,21 +96,20 @@ void Admin::taoNganHang(string idBank) {
 }
 
 void Admin::xoaNganHang(string idBank) {
-    system("cls");
-    string fileName = idBank + "_information.txt";
+    string fileName = "Bank_" + idBank + "_information.txt";
     if (remove(fileName.c_str()) != 0) {
         cout << "!!!!!!!!Khong the xoa ngan hang!!!!!!!!" << endl;
     } else {
         weigh();
         cout << "|" << setw(39) << (char)201 << string(40, (char)205) << (char)187 << setw(39) << "|" << "\n";
-        cout << "|" << setw(39) << (char)186 << "       NGAN HANG DA DUOC XOA          " << (char)186 << setw(39) << "|" << "\n";
+        cout << "|" << setw(39) << (char)186 << "         NGAN HANG DA DUOC XOA          " << (char)186 << setw(39) << "|" << "\n";
         cout << "|" << setw(39) << (char)200 << string(40, (char)205) << (char)188 << setw(39) << "|" << "\n";
         weigh();
     }
 }
 
 void Admin::xemLichSuGiaoDich(string idBank) {
-	ifstream logFile(idBank + "_transaction_history.txt");
+	ifstream logFile("Bank_" + idBank + "_transaction_history.txt");
 	if (logFile.is_open()) {
 
 		int count=1;
@@ -165,7 +164,7 @@ void Admin::xemLichSuGiaoDich(string idBank) {
 
 void Admin::xemLichSuGiaoDichKhachHang(string soThe) {
 	string idBank = soThe.substr(0, 3);
-	string transactionFileName = idBank + "_" + soThe + "_transaction_history.txt";
+	string transactionFileName = "Cust_" + idBank + "_transaction_history.txt";
 	ifstream transactionFile(transactionFileName);
 	if (transactionFile.is_open()) {
 		int count=1;
@@ -218,7 +217,7 @@ void Admin::xemLichSuGiaoDichKhachHang(string soThe) {
 }
 
 void Admin::xemLichSuGiaoDichATM(string idATM) {
-	ifstream logFile(idATM + "_transaction_history.txt");
+	ifstream logFile("ATM_" + idATM + "_transaction_history.txt");
 	if (logFile.is_open()) {
 
 		int count=1;
@@ -272,7 +271,7 @@ void Admin::xemLichSuGiaoDichATM(string idATM) {
 
 void Admin::xoaTaiKhoan(string soThe) {
 	string idBank = soThe.substr(0, 3);
-	ifstream inputFile(idBank + "_information.txt");
+	ifstream inputFile("Bank_" + idBank + "_information.txt");
 	ofstream tempFile(idBank + "_temp.txt");
 	bool found = false;
 
@@ -290,8 +289,8 @@ void Admin::xoaTaiKhoan(string soThe) {
 		}
 		inputFile.close();
 		tempFile.close();
-		remove((idBank + "_information.txt").c_str());
-		rename((idBank + "_temp.txt").c_str(), (idBank + "_information.txt").c_str());
+		remove(("ATM_" + idBank + "_information.txt").c_str());
+		rename((idBank + "_temp.txt").c_str(), ("ATM_" + idBank + "_information.txt").c_str());
 	} else {
 		cout << "!!!!!!!!Khong the mo file de xoa!!!!!!!!" << endl;
 	}
@@ -307,36 +306,44 @@ void Admin::xoaTaiKhoan(string soThe) {
 	}
 }
 
-void Admin::chonATM(ATM& atm) {
+void Admin::chonATM(ATM& atm) { 
 	inDanhSachATM();
 	int atmChoice;
 	cout << "Lua chon ATM: ";
 	cin >> atmChoice;
 
 	ifstream atmInfoFile("atm_info.txt");
+	if (!atmInfoFile.is_open()) {
+		cerr << "Khong the mo file atm_info.txt" << endl;
+		return;
+	}
+
 	string line;
 	int count = 1;
 	while (getline(atmInfoFile, line)) {
 		if (count == atmChoice) {
 			stringstream ss(line);
-			string idATM, diaChi, nganHangQuanLy, trangThaiStr;
-			float soDuATM;
-			bool trangThaiHoatDong;
+			string IdATM, DiaChi, NganHangQuanLy, trangThaiStr;
+			int SoDuATM;
+			bool TrangThaiHoatDong = false;
 
-			getline(ss, idATM, ',');
-			ss >> soDuATM;
-			getline(ss, diaChi, ',');
+			getline(ss, IdATM, ',');
+			ss >> SoDuATM;
+			ss.ignore();
+			getline(ss, DiaChi, ',');
 			getline(ss, trangThaiStr, ',');
-			getline(ss, trangThaiStr, ',');
-			if(trangThaiStr == "Hoat Dong") trangThaiHoatDong =true;
-			getline(ss, nganHangQuanLy, ',');
+			getline(ss, NganHangQuanLy, ',');
 
-			atm = ATM(idATM, soDuATM, diaChi, trangThaiHoatDong);
+			if (trangThaiStr == "Hoat Dong") TrangThaiHoatDong = true;
+
+			atm = ATM(IdATM, SoDuATM, DiaChi, TrangThaiHoatDong);
 			break;
 		}
 		count++;
 	}
+	atmInfoFile.close();
 }
+
 
 void Admin::xoaATM() {
 	inDanhSachATM();
@@ -433,21 +440,26 @@ void Admin::thayDoiThongTinATM() {
  
     switch (luaChon) {
         case 1: {
+        	int so_du_moi;
             cout << "Nhap so du moi: ";
-            cin >> atm.soDuATM;
+            cin >> so_du_moi;
+            atm.set_soDuATM(so_du_moi);
             break;
         }
         case 2: {
             cout << "Nhap dia chi moi: ";
+            string diaChi;
             cin.ignore();
-            getline(cin, atm.diaChi);
+            getline(cin, diaChi);
+            atm.set_diaChi(diaChi);
             break;
         }
         case 3: {
             cout << "Nhap trang thai moi (1 = Hoat Dong, 0 = Khong Hoat Dong): ";
             int trangThaiMoi;
             cin >> trangThaiMoi;
-            atm.trangThaiHoatDong = (trangThaiMoi == 1);
+            bool trangThaiHoatDong = (trangThaiMoi == 1);
+            atm.set_trangThaiHoatDong(trangThaiHoatDong);
             break;
         }
         default:
@@ -466,8 +478,9 @@ void Admin::thayDoiThongTinATM() {
     count = 1;
     while (getline(inputFile, line)) {
         if (count == atmChoice) {
-            string trangThaiStr = atm.trangThaiHoatDong ? "Hoat Dong" : "Khong Hoat Dong";
-            tempFile << atm.idATM << "," << fixed << setprecision(0) << atm.soDuATM << "," << atm.diaChi << "," << trangThaiStr << endl;
+            string trangThaiStr = atm.get_trangThaiHoatDong() ? "Hoat Dong" : "Khong Hoat Dong";
+            tempFile << atm.get_idATM() << "," << fixed << setprecision(0) << atm.get_soDuATM()
+			<< "," << atm.get_diaChi() << "," << trangThaiStr << endl;
         } else {
             tempFile << line << endl;
         }
@@ -486,653 +499,3 @@ void Admin::thayDoiThongTinATM() {
     cout << "|" << setw(39) << (char)200 << string(40, (char)205) << (char)188 << setw(39) << "|" << "\n";
     weigh();
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

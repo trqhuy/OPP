@@ -8,8 +8,9 @@
 using namespace std;
 
 class Admin {
-	public:
+	private:
 		vector<ATM> danhSachATM;
+	public:
 
 		void themATM(ATM atm);
 		void inDanhSachATM();

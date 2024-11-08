@@ -162,10 +162,10 @@ void Oder2_3(Admin admin) {//rut tien tu cay ATM
 	cout << "Nhap ma PIN: ";
 	cin >> PIN;
 
-	ATM atm("", 0.0, "", false);
+	ATM atm("", 0, "", false);
 	admin.chonATM(atm);
 	
-	if(atm.trangThaiHoatDong ==false) {
+	if(atm.get_trangThaiHoatDong() ==false) {
 		cout << "ATM khong con hoat dong"<<endl;
 	} 
 	else if (atm.timSTK(soThe) && atm.checkPIN(PIN)) {

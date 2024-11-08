@@ -9,22 +9,36 @@ using namespace std;
 
 class ATM {
 	private:
-//		Customer Cust;
-//		string idATM;
-//		float soDuATM;
-//		string diaChi;
-//		bool trangThaiHoatDong;
-//		string nganHangQuanLy;
-	public:
 		Customer Cust;
 		string idATM;
-		float soDuATM;
+		int soDuATM;
 		string diaChi;
 		bool trangThaiHoatDong;
-		string nganHangQuanLy;
-
-		ATM(string idATM, float soDuATM, string diaChi, bool trangThai);
+	public:
+		ATM(string IdATM, int SoDuATM, string DiaChi, bool TrangThai);
 		
+		void set_soDuATM(int so_du_moi){
+			soDuATM =so_du_moi;
+		}
+		void set_diaChi(string DiaChi) {
+			diaChi =DiaChi;
+		}
+		void set_trangThaiHoatDong(bool trang_Thai_Moi) {
+			trangThaiHoatDong =trang_Thai_Moi;
+		}
+		
+		bool get_trangThaiHoatDong(){
+			return this->trangThaiHoatDong;
+		}
+		string get_idATM(){
+			return idATM;
+		}
+		int get_soDuATM(){
+			return soDuATM;
+		} 
+		string get_diaChi(){
+			return diaChi;
+		} 
 
 		bool timSTK(string soThe);
 		bool checkPIN(string PIN);

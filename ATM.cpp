@@ -11,26 +11,28 @@
 
 using namespace std;
 
-ATM::ATM(string idATM, float soDuATM, string diaChi, bool trangThai)
+ATM::ATM(string idATM, int soDuATM, string diaChi, bool trangThai)
 	: Cust("", "", "", 0), idATM(idATM), soDuATM(soDuATM), diaChi(diaChi), trangThaiHoatDong(trangThai) {}
 
 bool ATM::timSTK(string soThe) {
 	string idBank = soThe.substr(0, 3);
-	ifstream inputFile(idBank + "_information.txt");
+	ifstream inputFile("Bank_"+ idBank + "_information.txt");
 	if (inputFile.is_open()) {
 		string line;
 		while (getline(inputFile, line)) {
 			stringstream ss(line);
-			string tenChuThe, pin;
-			float soDu;
-
-			getline(ss, Cust.soThe, ',');
-			getline(ss, Cust.tenChuThe, ',');
-			getline(ss, Cust.PIN, ',');
+			string tenChuThe, pin, soTheTim;
+			int soDu;
+			
+			getline(ss, soTheTim, ',');
+			getline(ss, tenChuThe, ',');
+			getline(ss, pin, ',');
 			ss >> soDu;
-
-			if (Cust.soThe == soThe) {
-				Cust.soDu = soDu;
+			
+			Cust =Customer(soTheTim,tenChuThe,pin,soDu);
+			
+			if (Cust.getSoThe() == soThe) {
+				Cust.set_SoDu(soDu);
 				return true;
 			}
 		}
@@ -39,12 +41,12 @@ bool ATM::timSTK(string soThe) {
 }
 
 bool ATM::checkPIN(string PIN) {
-	return Cust.PIN == PIN;
+	return Cust.getPin() == PIN;
 }
 
 void ATM::ghiLichSu(string action, float amount, const string& transactionId) {
-	string idBank = Cust.soThe.substr(0, 3);
-	string transactionFileName = idBank + "_" + Cust.soThe + "_transaction_history.txt";
+	string idBank = Cust.getSoThe().substr(0, 3);
+	string transactionFileName = "Cust_" + Cust.getSoThe() + "_transaction_history.txt";
 	ofstream logFile(transactionFileName, ios::app);
 	if (logFile.is_open()) {
 		time_t now = time(0);
@@ -61,7 +63,7 @@ void ATM::ghiLichSu(string action, float amount, const string& transactionId) {
 }
 
 void ATM::ghiLichSuATM(string action, float amount, const string& transactionId) {
-	string bankTransactionFileName = idATM + "_transaction_history.txt";
+	string bankTransactionFileName = "ATM_" + idATM + "_transaction_history.txt";
 	ofstream bankLogFile(bankTransactionFileName, ios::app);
 	if (bankLogFile.is_open()) {
 		time_t now = time(0);
@@ -71,7 +73,7 @@ void ATM::ghiLichSuATM(string action, float amount, const string& transactionId)
 		strftime(dt, sizeof(dt), "%d/%m/%Y %H:%M:%S", ltm);
 
 
-		bankLogFile << dt << ", "<< "Transaction ID: " << transactionId <<", " << action << " - " << amount << " VND, Tai khoan: " << Cust.soThe  << endl;
+		bankLogFile << dt << ", "<< "Transaction ID: " << transactionId <<", " << action << " - " << amount << " VND, Tai khoan: " << Cust.getSoThe()  << endl;
 		bankLogFile.close();
 	} else {
 		cout << "Khong the mo file lich su giao dich ngan hang!" << endl;
@@ -79,8 +81,8 @@ void ATM::ghiLichSuATM(string action, float amount, const string& transactionId)
 }
 
 void ATM::ghiLichSuNganHang(string action, float amount, const string& transactionId) {
-	string idBank = Cust.soThe.substr(0, 3);
-	string bankTransactionFileName = idBank + "_transaction_history.txt";
+	string idBank = Cust.getSoThe().substr(0, 3);
+	string bankTransactionFileName = "Bank_" + idBank + "_transaction_history.txt";
 	ofstream bankLogFile(bankTransactionFileName, ios::app);
 	if (bankLogFile.is_open()) {
 		time_t now = time(0);
@@ -90,7 +92,7 @@ void ATM::ghiLichSuNganHang(string action, float amount, const string& transacti
 		strftime(dt, sizeof(dt), "%d/%m/%Y %H:%M:%S", ltm);
 
 
-		bankLogFile << dt << ", "<< "Transaction ID: " << transactionId <<", " << action << " - " << amount << " VND, Tai khoan: " << Cust.soThe  << endl;
+		bankLogFile << dt << ", "<< "Transaction ID: " << transactionId <<", " << action << " - " << amount << " VND, Tai khoan: " << Cust.getSoThe()  << endl;
 		bankLogFile.close();
 	} else {
 		cout << "Khong the mo file lich su giao dich ngan hang!" << endl;
@@ -99,8 +101,8 @@ void ATM::ghiLichSuNganHang(string action, float amount, const string& transacti
 
 
 void ATM::ghiThongTinKhachHang() {
-	string idBank = Cust.soThe.substr(0, 3);
-	string customerFileName = idBank + "_information.txt";
+	string idBank = Cust.getSoThe().substr(0, 3);
+	string customerFileName = "Bank_" + idBank + "_information.txt";
 	ifstream inputFile(customerFileName);
 	ofstream tempFile(idBank + "_temp.txt");
 
@@ -110,8 +112,8 @@ void ATM::ghiThongTinKhachHang() {
 			stringstream ss(line);
 			string tk;
 			getline(ss, tk, ',');
-			if (tk == Cust.soThe) {
-				tempFile << Cust.soThe << "," << Cust.tenChuThe << "," << Cust.PIN << "," <<  fixed << setprecision(0) << Cust.soDu  << endl;
+			if (tk == Cust.getSoThe()) {
+				tempFile << Cust.getSoThe() << "," << Cust.getTenChuThe() << "," << Cust.getPin() << "," <<  fixed << setprecision(0) << Cust.getSoDu()  << endl;
 			} else {
 				tempFile << line << endl;
 			}
@@ -121,7 +123,7 @@ void ATM::ghiThongTinKhachHang() {
 		remove(customerFileName.c_str());
 		rename((idBank + "_temp.txt").c_str(), customerFileName.c_str());
 	} else {
-		cout << "Khong the mo file de ghi!" << endl;
+		cout << "1.Khong the mo file de ghi!" << endl;
 	}
 }
 
@@ -157,7 +159,7 @@ void ATM::printReceipt(const string& action, float amount, const string& transac
     cout << "|" << setw(30) << "Ma giao dich:" << setw(20) << transactionId << setw(70) << "|\n";
     cout << "|" << setw(30) << "Loai giao dich:" << setw(20) << action << setw(70) << "|\n";
     cout << "|" << setw(30) << "So tien:" << setw(20) << fixed << setprecision(2) << amount << " VND" << setw(66) << "|\n";
-    cout << "|" << setw(30) << "So du sau giao dich:" << setw(20) << fixed << setprecision(2) << Cust.soDu << " VND" << setw(66) << "|\n";
+    cout << "|" << setw(30) << "So du sau giao dich:" << setw(20) << fixed << setprecision(2) << Cust.getSoDu() << " VND" << setw(66) << "|\n";
     cout << "|" << setw(119) << "|" << "\n";
     
     weigh();
@@ -201,7 +203,7 @@ void ATM::capNhatSoDuATM() {
 }
 
 void ATM::rutTien(float soTien) {
-	if (soTien > Cust.soDu) {
+	if (soTien > Cust.getSoDu()) {
 		cout << "So tien rut vuot qua so du!" << endl;
 		return;
 	}
@@ -211,7 +213,7 @@ void ATM::rutTien(float soTien) {
 		return;
 	}
 
-	Cust.setSoDu(Cust.soDu - soTien);
+	Cust.set_SoDu(Cust.getSoDu() - soTien);
 
 	soDuATM -= soTien;
 
@@ -228,7 +230,7 @@ void ATM::rutTien(float soTien) {
 }
 
 void ATM::napTien(float soTien) {
-	Cust.setSoDu(Cust.soDu - soTien);
+	Cust.set_SoDu(Cust.getSoDu() - soTien);
 
 	soDuATM += soTien;
 
