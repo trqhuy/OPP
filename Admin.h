@@ -10,7 +10,7 @@ using namespace std;
 class Admin {
 	public:
 		vector<ATM> danhSachATM;
-
+		
 		void themATM(ATM atm);
 		void inDanhSachATM();
 		void themKhachHang(Customer& customer);

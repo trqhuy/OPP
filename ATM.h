@@ -9,19 +9,19 @@ using namespace std;
 
 class ATM {
 	private:
-//		Customer Cust;
-//		string idATM;
-//		float soDuATM;
-//		string diaChi;
-//		bool trangThaiHoatDong;
-//		string nganHangQuanLy;
-	public:
 		Customer Cust;
 		string idATM;
 		float soDuATM;
 		string diaChi;
 		bool trangThaiHoatDong;
 		string nganHangQuanLy;
+	public:
+//		Customer Cust;
+//		string idATM;
+//		float soDuATM;
+//		string diaChi;
+//		bool trangThaiHoatDong;
+//		string nganHangQuanLy;
 
 		ATM(string idATM, float soDuATM, string diaChi, bool trangThai);
 		

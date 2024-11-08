@@ -63,7 +63,8 @@ void Admin::inDanhSachATM() {
 
 
 void Admin::themKhachHang(Customer& customer) {
-	string idBank = customer.getSoThe().substr(0, 3);
+	//string idBank = customer.getSoThe().substr(0, 3);
+	string idBank = customer.getSoThe();
 	ofstream outputFile(idBank + "_information.txt", ios::app);
 	if (outputFile.is_open()) {
 		outputFile << customer.getSoThe() << ","
