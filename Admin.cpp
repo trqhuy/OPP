@@ -163,8 +163,7 @@ void Admin::xemLichSuGiaoDich(string idBank) {
 
 
 void Admin::xemLichSuGiaoDichKhachHang(string soThe) {
-	string idBank = soThe.substr(0, 3);
-	string transactionFileName = "Cust_" + idBank + "_transaction_history.txt";
+	string transactionFileName = "Cust_" + soThe + "_transaction_history.txt";
 	ifstream transactionFile(transactionFileName);
 	if (transactionFile.is_open()) {
 		int count=1;

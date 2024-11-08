@@ -55,3 +55,40 @@ class ATM {
 };
 
 #endif
+
+//#ifndef ATM_H
+//#define ATM_H
+//
+//#include "Customer.h"
+//#include <string>
+//#include <vector>
+//#include <fstream>
+//#include <sstream>
+//#include <ctime>
+//#include <iomanip>
+//using namespace std;
+//
+//class ATM {
+//private:
+//    Customer Cust;
+//    string idATM;
+//    float soDuATM;
+//    string diaChi;
+//    bool trangThaiHoatDong;
+//public:
+//    ATM(string idATM, float soDuATM, string diaChi, bool trangThai);
+//    bool timSTK(string soThe);
+//    bool checkPIN(string PIN);
+//    void ghiLichSu(string action, float amount, const string& transactionId);
+//    void ghiLichSuATM(string action, float amount, const string& transactionId);
+//    void ghiLichSuNganHang(string action, float amount, const string& transactionId);
+//    void rutTien(float soTien);
+//    void napTien(float soTien);
+//    void ghiThongTinKhachHang();
+//    void ghiThongTinATM();
+//    string generateTransactionId();
+//    void printReceipt(const string& action, float amount, const string& transactionId);
+//    void capNhatSoDuATM();
+//};
+//
+//#endif
