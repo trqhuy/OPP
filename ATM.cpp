@@ -24,13 +24,13 @@ bool ATM::timSTK(string soThe) {
 			string tenChuThe, pin;
 			float soDu;
 
-			getline(ss, Cust.getSoThe(), ',');
-			getline(ss, Cust.getTenChuThe(), ',');
-			getline(ss, Cust.getPin(), ',');
+			getline(ss, Cust.soThe, ',');
+			getline(ss, Cust.tenChuThe, ',');
+			getline(ss, Cust.PIN, ',');
 			ss >> soDu;
 
-			if (Cust.getSoThe() == soThe) {
-				Cust.soD = soDu;
+			if (Cust.soThe == soThe) {
+				Cust.soDu = soDu;
 				return true;
 			}
 		}
@@ -157,7 +157,7 @@ void ATM::printReceipt(const string& action, float amount, const string& transac
     cout << "|" << setw(30) << "Ma giao dich:" << setw(20) << transactionId << setw(70) << "|\n";
     cout << "|" << setw(30) << "Loai giao dich:" << setw(20) << action << setw(70) << "|\n";
     cout << "|" << setw(30) << "So tien:" << setw(20) << fixed << setprecision(2) << amount << " VND" << setw(66) << "|\n";
-    cout << "|" << setw(30) << "So du sau giao dich:" << setw(25) << fixed << setprecision(2) << Cust.soDu << " VND" << setw(61) << "|\n";
+    cout << "|" << setw(30) << "So du sau giao dich:" << setw(20) << fixed << setprecision(2) << Cust.soDu << " VND" << setw(66) << "|\n";
     cout << "|" << setw(119) << "|" << "\n";
     
     weigh();

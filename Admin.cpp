@@ -52,7 +52,6 @@ void Admin::inDanhSachATM() {
 
 
 		weigh();
-//		logFile.close();
 	} else {
 		cout << "+======================================================================================================================+" << endl;
 		cout << "|                                      ??????????????????????????????????????????                                      |" << endl;
@@ -83,7 +82,6 @@ void Admin::themKhachHang(Customer& customer) {
 }
 
 void Admin::taoNganHang(string idBank) {
-	system("cls");
 	ofstream bankFile(idBank + "_information.txt");
 	if (bankFile.is_open()) {
 		weigh();
@@ -329,7 +327,8 @@ void Admin::chonATM(ATM& atm) {
 			ss >> soDuATM;
 			getline(ss, diaChi, ',');
 			getline(ss, trangThaiStr, ',');
-			trangThaiHoatDong = (trangThaiStr == "Hoat Dong");
+			getline(ss, trangThaiStr, ',');
+			if(trangThaiStr == "Hoat Dong") trangThaiHoatDong =true;
 			getline(ss, nganHangQuanLy, ',');
 
 			atm = ATM(idATM, soDuATM, diaChi, trangThaiHoatDong);

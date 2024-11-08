@@ -163,8 +163,11 @@ void Oder2_3(Admin admin) {//rut tien tu cay ATM
 
 	ATM atm("", 0.0, "", false);
 	admin.chonATM(atm);
-
-	if (atm.timSTK(soThe) && atm.checkPIN(PIN)) {
+	
+	if(atm.trangThaiHoatDong ==false) {
+		cout << "ATM khong con hoat dong"<<endl;
+	} 
+	else if (atm.timSTK(soThe) && atm.checkPIN(PIN)) {
 		cout << "Nhap so tien can rut: ";
 		cin >> soTien;
 		atm.rutTien(soTien);
