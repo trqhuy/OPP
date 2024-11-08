@@ -83,13 +83,9 @@ void Oder1_1(Admin admin) {//tao ngan hang
 	cout <<"|"<< setw(39) << (char)186 << "          TAO NGAN HANG MOI             " << (char)186   << setw(39) <<"|"<< "\n";
 	cout <<"|"<< setw(39) << (char)200 << string(40, (char)205) << (char)188 						<< setw(39) <<"|"<< "\n";
 	weigh();
-	
 	cout <<"Nhap ID ngan hang can tao ->";
-	
 	cin >> idBank;
-	
 	admin.taoNganHang(idBank);
-	
 	wait();
 }
 
@@ -207,38 +203,24 @@ void Oder2_5(Admin admin) {//in lich su giao dich cua khach hang
 	system("cls");
 	string account;
 	cout<<"Nhap so tai khoan kiem tra lich su gioa dich ->";
-	
 	cin>> account;
-	
 	admin.xemLichSuGiaoDichKhachHang(account);
-	
 	wait();
 }
 
 void Oder3_1(Admin admin) {//tao cay ATM
-
 	string idATM, diaChi, nganHangQuanLy;
-	
 	float soDuATM;
-	
 	bool trangThai;
 
 	cout << "Nhap ID ATM: ";
-	
 	cin >> idATM;
-	
 	cout << "Nhap so du ATM: ";
-	
 	cin >> soDuATM;
-	
 	cout << "Nhap dia chi ATM: ";
-	
 	cin.ignore();
-	
 	getline(cin, diaChi);
-	
 	cout << "Nhap trang thai ATM (1 cho hoat dong, 0 cho khong hoat dong): ";
-	
 	cin >> trangThai;
 
 	ATM newATM(idATM, soDuATM, diaChi, trangThai);
