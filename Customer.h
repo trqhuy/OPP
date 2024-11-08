@@ -2,7 +2,11 @@
 #define CUSTOMER_H
 using namespace std;
 #include <string>
-
+class info{
+	private:
+		string soThe, tenChuThe, PIN;
+		int soDu;
+};
 class Customer {
 	private:
 		string soThe, tenChuThe, PIN;
