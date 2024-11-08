@@ -112,6 +112,7 @@ void Oder1_3(Admin admin) {//in lich su giao dich cua ngan hang
 	wait();
 }
 
+
 void Oder2_1(Admin admin) {//tao tai khoan ngan hang
 	system("cls");
 	weigh();
@@ -223,33 +224,50 @@ void Oder3_1(Admin admin) {//tao cay ATM
 	cin >> trangThai;
 
 	ATM newATM(idATM, soDuATM, diaChi, trangThai);
+	
 	admin.themATM(newATM);
+	
 	wait();
 }
 
 void Oder3_2(Admin admin) {//xoa cay ATM
+
 	system("cls");
+	
 	admin.xoaATM();
+	
 	wait();
 }
 
 void Oder3_3(Admin admin) {//in danh sach cac cay ATM
+
 	system("cls");
+	
 	admin.inDanhSachATM();
+	
 	wait();
+	
 }
 
 void Oder3_4(Admin admin) {//in lich su giao dich cua ATM
+
 	string idATM;
+	
 	cout << "Nhap ID ATM ->";
+	
 	cin >> idATM;
+	
 	admin.xemLichSuGiaoDichATM(idATM);
+	
 	wait();
 }
 
 void Oder3_5(Admin admin) {//thay doi thong tin ATM
+
 	system("cls");
+	
 	admin.thayDoiThongTinATM();
+	
 	wait();
 }
 
