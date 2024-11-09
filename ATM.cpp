@@ -210,7 +210,7 @@ void ATM::rutTien(float soTien) {
         
 
         // Kiểm tra nếu số tiền rút phải lớn hơn 50 VND
-        if (soTien <= 50) {
+        if (soTien < 50) {
             cout << "So tien rut phai lon hon 50 VND!" << endl;
             cout << "Ban co muon nhap lai khong? (Y/N): ";
             cin >> choice;
@@ -282,7 +282,7 @@ void ATM::napTien(float soTien) {
 
     do {
         // Kiểm tra nếu số tiền nạp phải lớn hơn 50 VND
-        if (soTien <= 50) {
+        if (soTien < 50) {
             cout << "So tien nap phai lon hon 50 VND!" << endl;
             cout << "Ban co muon nhap lai khong? (Y/N): ";
             cin >> choice;
