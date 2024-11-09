@@ -230,7 +230,7 @@ void ATM::rutTien(float soTien) {
 }
 
 void ATM::napTien(float soTien) {
-	Cust.set_SoDu(Cust.getSoDu() - soTien);
+	Cust.set_SoDu(Cust.getSoDu() + soTien);
 
 	soDuATM += soTien;
 
