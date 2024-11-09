@@ -114,7 +114,7 @@ void Admin::themKhachHang(Customer& customer) {
 
     // Nhập và kiểm tra mã PIN
     do {
-        cout << "Nhap ma PIN (toi thiểu 4 ky tu): ";
+        cout << "Nhap ma PIN (toi thieu 4 ky tu): ";
         getline(cin, pin);
         if (!isValidPin(pin)) {
             cout << "Ma PIN khong hop le. Vui long nhap lai (toi thieu 4 ky tu, chi chua so)." << endl;
@@ -154,9 +154,7 @@ void Admin::themKhachHang(Customer& customer) {
 }
 
 void Admin::taoNganHang(string idBank) {
-	ofstream bankFile("Bank_" + idBank + "_information.txt");
-	if (bankFile.is_open()) {
-		weigh();
+	ofstream bankFile("Bank_" + idBank + "_information.txt");if (bankFile.is_open()) {
 		cout <<"|"<< setw(39) << (char)201 << string(40, (char)205) << (char)187 						<< setw(39) <<"|" << "\n";
 		cout <<"|"<< setw(39) << (char)186 << "       NGAN HANG MOI DA DUOC TAO        " << (char)186   << setw(39) <<"|"<< "\n";
 		cout <<"|"<< setw(39) << (char)200 << string(40, (char)205) << (char)188 						<< setw(39) <<"|"<< "\n";
@@ -510,32 +508,77 @@ void Admin::thayDoiThongTinATM() {
     cin >> luaChon;
  
     switch (luaChon) {
-        case 1: {
-        	int so_du_moi;
-            cout << "Nhap so du moi: ";
+    case 1: { 
+        int so_du_moi;
+        while (true) {
+            cout << "Nhap so du moi (tối thiểu 1000): ";
             cin >> so_du_moi;
-            atm.set_soDuATM(so_du_moi);
-            break;
+
+            // Kiểm tra số dư phải tối thiểu 1000
+            if (so_du_moi >= 1000) {
+                atm.set_soDuATM(so_du_moi);
+                break; 
+            } else {
+                cout << "So du ATM phai lon hon hoac bang 1000. Vui long nhap lai." << endl;
+                cout << "Ban co muon nhap lai? (Y/N): ";
+                char choice;
+                cin >> choice;
+                if (choice == 'N' || choice == 'n') {
+                    return; 
+                }
+            }
         }
-        case 2: {
+        break;
+    }
+    case 2: { // Thay đổi địa chỉ ATM
+        string diaChi;
+        while (true) {
             cout << "Nhap dia chi moi: ";
-            string diaChi;
-            cin.ignore();
+            cin.ignore();  
             getline(cin, diaChi);
-            atm.set_diaChi(diaChi);
-            break;
+
+            // Kiểm tra địa chỉ chỉ chứa chữ cái và dấu cách
+            if (all_of(diaChi.begin(), diaChi.end(), [](char c) { return isalpha(c) || c == ' '; })) {
+                atm.set_diaChi(diaChi);
+                break; 
+            } else {
+                cout << "Dia chi ATM khong hop le! Dia chi chi duoc chua chu cai va dau cach. Vui long nhap lai." << endl;
+                cout << "Ban co muon nhap lai? (Y/N): ";
+                char choice;
+                cin >> choice;
+                if (choice == 'N' || choice == 'n') {
+                    return; 
+                }
+            }
         }
-        case 3: {
+        break;
+    }
+    case 3: { // Thay đổi trạng thái ATM
+        int trangThaiMoi;
+        while (true) {
             cout << "Nhap trang thai moi (1 = Hoat Dong, 0 = Khong Hoat Dong): ";
-            int trangThaiMoi;
             cin >> trangThaiMoi;
-            bool trangThaiHoatDong = (trangThaiMoi == 1);
-            atm.set_trangThaiHoatDong(trangThaiHoatDong);
-            break;
+
+            // Kiểm tra trạng thái phải là 0 hoặc 1
+            if (trangThaiMoi == 0 || trangThaiMoi == 1) {
+                bool trangThaiHoatDong = (trangThaiMoi == 1);
+                atm.set_trangThaiHoatDong(trangThaiHoatDong);
+                break; 
+            } else {
+                cout << "Trang thai khong hop le! Vui long nhap 1 cho hoat dong hoac 0 cho khong hoat dong." << endl;
+                cout << "Ban co muon nhap lai? (Y/N): ";
+                char choice;
+                cin >> choice;
+                if (choice == 'N' || choice == 'n') {
+                    return; 
+                }
+            }
         }
-        default:
-            cout << "Lua chon khong hop le!" << endl;
-            return;
+        break;
+    }
+    default:
+        cout << "Lua chon khong hop le!" << endl;
+        break;
     }
  
     ifstream inputFile("atm_info.txt");

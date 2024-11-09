@@ -6,3 +6,4 @@
 09/11/2024 16:06:23, Transaction ID: TX017122, Nap tien - 100 VND, Tai khoan: 123456789
 09/11/2024 16:13:31, Transaction ID: TX018519, Rut tien - 100 VND, Tai khoan: 123456789
 09/11/2024 16:14:28, Transaction ID: TX018705, Nap tien - 100 VND, Tai khoan: 123456789
+09/11/2024 16:19:04, Transaction ID: TX019607, Rut tien - 50 VND, Tai khoan: 223344551
