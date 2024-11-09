@@ -1,0 +1,7 @@
+09/11/2024 15:40:07, Transaction ID: TX011975, Rut tien - 1 VND
+09/11/2024 15:45:12, Transaction ID: TX012971, Nap tien - 50 VND
+09/11/2024 15:52:28, Transaction ID: TX014395, Rut tien - 100 VND
+09/11/2024 16:05:46, Transaction ID: TX017001, Nap tien - 100 VND
+09/11/2024 16:06:23, Transaction ID: TX017122, Nap tien - 100 VND
+09/11/2024 16:13:31, Transaction ID: TX018519, Rut tien - 100 VND
+09/11/2024 16:14:28, Transaction ID: TX018705, Nap tien - 100 VND

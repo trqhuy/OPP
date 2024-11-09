@@ -5,11 +5,18 @@
 #include "Customer.h"
 #include <vector>
 
+
 using namespace std;
 
 class Admin {
 	private:
 		vector<ATM> danhSachATM;
+		
+		bool isValidSoThe(const string& soThe);
+        bool isValidTenChuThe(const string& tenChuThe);
+        bool isValidPin(const string& pin);
+        bool isValidSoDu(double soDu);
+
 	public:
 
 		void themATM(ATM atm);
@@ -24,6 +31,8 @@ class Admin {
 		void xoaATM();
 		void thayDoiThongTinATM();
 		void xoaNganHang(string idBank);
+		
+		
 };
 
 #endif

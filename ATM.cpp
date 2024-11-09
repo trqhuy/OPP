@@ -203,48 +203,124 @@ void ATM::capNhatSoDuATM() {
 }
 
 void ATM::rutTien(float soTien) {
-	if (soTien > Cust.getSoDu()) {
-		cout << "So tien rut vuot qua so du!" << endl;
-		return;
-	}
+    char choice; // Biến để lưu lựa chọn của người dùng (có hoặc không)
+    cout << "So du hien tai: " << Cust.getSoDu() << " VND" << endl;
+    do {
+        // In số dư hiện tại trước khi thực hiện giao dịch
+        
 
-	if (soTien > soDuATM) {
-		cout << "ATM khong du tien de rut!" << endl;
-		return;
-	}
+        // Kiểm tra nếu số tiền rút phải lớn hơn 50 VND
+        if (soTien <= 50) {
+            cout << "So tien rut phai lon hon 50 VND!" << endl;
+            cout << "Ban co muon nhap lai khong? (Y/N): ";
+            cin >> choice;
+            if (choice == 'Y' || choice == 'y') {
+                cout << "Nhap so tien can rut: ";
+                cin >> soTien;  // Yêu cầu người dùng nhập lại số tiền
+                continue; // Tiếp tục vòng lặp nếu người dùng chọn nhập lại
+            } else {
+                return; // Dừng nếu người dùng không muốn nhập lại
+            }
+        }
 
-	Cust.set_SoDu(Cust.getSoDu() - soTien);
+        // Kiểm tra xem khách hàng có đủ tiền trong tài khoản không
+        if (soTien > Cust.getSoDu()) {
+            cout << "So tien rut vuot qua so du!" << endl;
+            cout << "Ban co muon nhap lai khong? (Y/N): ";
+            cin >> choice;
+            if (choice == 'Y' || choice == 'y') {
+                cout << "Nhap so tien can rut: ";
+                cin >> soTien;  // Yêu cầu người dùng nhập lại số tiền
+                continue; // Tiếp tục vòng lặp nếu người dùng chọn nhập lại
+            } else {
+                return; // Dừng nếu người dùng không muốn nhập lại
+            }
+        }
 
-	soDuATM -= soTien;
+        // Kiểm tra xem ATM có đủ tiền để thực hiện giao dịch không
+        if (soTien > soDuATM) {
+            cout << "ATM khong du tien de rut!" << endl;
+            cout << "Ban co muon nhap lai khong? (Y/N): ";
+            cin >> choice;
+            if (choice == 'Y' || choice == 'y') {
+                cout << "Nhap so tien can rut: ";
+                cin >> soTien;  // Yêu cầu người dùng nhập lại số tiền
+                continue; // Tiếp tục vòng lặp nếu người dùng chọn nhập lại
+            } else {
+                return; // Dừng nếu người dùng không muốn nhập lại
+            }
+        }
 
-	string transactionId = generateTransactionId();
-	ghiLichSu("Rut tien", soTien, transactionId);
-	ghiLichSuATM("Rut tien", soTien, transactionId);
-	ghiLichSuNganHang("Rut tien", soTien, transactionId);
+        // Cập nhật số dư tài khoản của khách hàng sau khi rút tiền
+        Cust.set_SoDu(Cust.getSoDu() - soTien);
 
-	ghiThongTinKhachHang();
+        // Cập nhật số dư trong ATM
+        soDuATM -= soTien;
 
-	capNhatSoDuATM();
+        // Tạo ID giao dịch và ghi lịch sử
+        string transactionId = generateTransactionId();
+        ghiLichSu("Rut tien", soTien, transactionId);
+        ghiLichSuATM("Rut tien", soTien, transactionId);
+        ghiLichSuNganHang("Rut tien", soTien, transactionId);
 
-	printReceipt("Rut tien", soTien, transactionId);
+        // Cập nhật thông tin khách hàng
+        ghiThongTinKhachHang();
+
+        // Cập nhật số dư ATM
+        capNhatSoDuATM();
+
+        // In biên lai giao dịch
+        printReceipt("Rut tien", soTien, transactionId);
+
+        break; // Thoát khỏi vòng lặp khi giao dịch thành công
+
+    } while (true);  // Lặp lại nếu người dùng muốn nhập lại
 }
 
 void ATM::napTien(float soTien) {
-	Cust.set_SoDu(Cust.getSoDu() + soTien);
+    char choice; // Biến để lưu lựa chọn của người dùng
 
-	soDuATM += soTien;
+    do {
+        // Kiểm tra nếu số tiền nạp phải lớn hơn 50 VND
+        if (soTien <= 50) {
+            cout << "So tien nap phai lon hon 50 VND!" << endl;
+            cout << "Ban co muon nhap lai khong? (Y/N): ";
+            cin >> choice;
 
-	string transactionId = generateTransactionId();
-	ghiLichSu("Nap tien", soTien, transactionId);
-	ghiLichSuATM("Nap tien", soTien, transactionId);
-	ghiLichSuNganHang("Nap tien", soTien, transactionId);
+            if (choice == 'Y' || choice == 'y') {
+                cout << "Nhap so tien can nap: ";
+                cin >> soTien;  // Yêu cầu người dùng nhập lại số tiền
+                continue; // Tiếp tục vòng lặp nếu người dùng chọn nhập lại
+            } else {
+                cout << "Giao dich ket thuc." << endl;
+                return; // Dừng giao dịch nếu người dùng không muốn nhập lại
+            }
+        }
 
-	ghiThongTinKhachHang();
+        // Tiến hành cập nhật số dư tài khoản khách hàng và ATM
+        Cust.set_SoDu(Cust.getSoDu() + soTien);  // Cập nhật số dư tài khoản khách hàng
+        soDuATM += soTien;  // Cập nhật số dư ATM
 
-	capNhatSoDuATM();
+        // Tạo ID giao dịch và ghi lịch sử
+        string transactionId = generateTransactionId();
+        ghiLichSu("Nap tien", soTien, transactionId);
+        ghiLichSuATM("Nap tien", soTien, transactionId);
+        ghiLichSuNganHang("Nap tien", soTien, transactionId);
 
-	printReceipt("Nap tien", soTien, transactionId);
+        // Cập nhật thông tin khách hàng
+        ghiThongTinKhachHang();
+
+        // Cập nhật số dư ATM
+        capNhatSoDuATM();
+
+        // In biên lai giao dịch
+        printReceipt("Nap tien", soTien, transactionId);
+
+        break; // Thoát khỏi vòng lặp nếu giao dịch thành công
+
+    } while (true);  // Lặp lại nếu người dùng muốn nhập lại
 }
+
 
 
 

@@ -10,6 +10,12 @@
 #include <cstdlib>
 #include <iomanip>
 
+//#include <string>
+//#include <iomanip>
+#include <cctype>
+#include <limits>
+#include <regex>
+
 using namespace std;
 
 void Admin::themATM(ATM atm) {
@@ -23,7 +29,7 @@ void Admin::inDanhSachATM() {
 		string line;
 		int count = 1;
 
-		weigh();
+//		weigh();
 		cout <<"|"<< setw(39) << (char)201 << string(40, (char)205) << (char)187 						<< setw(39) <<"|" << "\n";
 		cout <<"|"<< setw(39) << (char)186 << "           DANH SACH CAY ATM            " << (char)186   << setw(39) <<"|"<< "\n";
 		cout <<"|"<< setw(39) << (char)200 << string(40, (char)205) << (char)188 						<< setw(39) <<"|"<< "\n";
@@ -61,24 +67,90 @@ void Admin::inDanhSachATM() {
 	}
 }
 
+bool Admin::isValidSoThe(const string& soThe) {
+    // Kiểm tra số thẻ phải có đúng 9 ký tự và tất cả là chữ số
+    return soThe.length() == 9 && all_of(soThe.begin(), soThe.end(), ::isdigit);
+}
+
+bool Admin::isValidTenChuThe(const string& tenChuThe) {
+    // Kiểm tra tên chủ thẻ chỉ chứa chữ cái (không có ký tự đặc biệt hoặc số)
+    return all_of(tenChuThe.begin(), tenChuThe.end(), [](unsigned char c) { return isalpha(c) || c == ' '; });
+}
+
+bool Admin::isValidPin(const string& pin) {
+    // Kiểm tra mã PIN có ít nhất 4 ký tự số
+    return pin.length() >= 4 && all_of(pin.begin(), pin.end(), ::isdigit);
+}
+
+bool Admin::isValidSoDu(double soDu) {
+    // Kiểm tra số dư tài khoản không được dưới 50 VND
+    return soDu >= 50;
+}
+
 
 void Admin::themKhachHang(Customer& customer) {
-	string idBank = customer.getSoThe().substr(0, 3);
-	ofstream outputFile("Bank_" + idBank + "_information.txt", ios::app);
-	if (outputFile.is_open()) {
-		outputFile << customer.getSoThe() << ","
-		           << customer.getTenChuThe() << ","
-		           << customer.getPin() << ","
-		           << fixed << setprecision(0) << customer.getSoDu() << endl;
-		outputFile.close();
-		weigh();
-		cout <<"|"<< setw(39) << (char)201 << string(40, (char)205) << (char)187 						<< setw(39) <<"|" << "\n";
-		cout <<"|"<< setw(39) << (char)186 << "       TAI KHOAN MOI DA DUOC TAO        " << (char)186   << setw(39) <<"|"<< "\n";
-		cout <<"|"<< setw(39) << (char)200 << string(40, (char)205) << (char)188 						<< setw(39) <<"|"<< "\n";
-		weigh();
-	} else {
-		cout << "!!!!!!!!Khong the tao tai khoan ngan hang!!!!!!!!" << endl;
-	}
+    string soThe, tenChuThe, pin;
+    double soDu;
+
+    // Nhập và kiểm tra số thẻ
+    do {
+        cout << "Nhap so the (9 ky tu, chi chua so): ";
+        getline(cin, soThe);
+        if (!isValidSoThe(soThe)) {
+            cout << "So the khong hop le. Vui long nhap lai (9 ky tu, chi chua so)." << endl;
+        }
+    } while (!isValidSoThe(soThe));
+    customer.set_soThe(soThe);
+
+    // Nhập và kiểm tra tên chủ thẻ
+    do {
+        cout << "Nhap ten chu the (chi chua chu cai): ";
+        getline(cin, tenChuThe);
+        if (!isValidTenChuThe(tenChuThe)) {
+            cout << "Ten chu the khong hop le. Vui long nhap lai (chi chua chu cai, khong co so hoac ky tu dac biet)." << endl;
+        }
+    } while (!isValidTenChuThe(tenChuThe));
+    customer.set_tenChuThe(tenChuThe);
+
+    // Nhập và kiểm tra mã PIN
+    do {
+        cout << "Nhap ma PIN (toi thiểu 4 ky tu): ";
+        getline(cin, pin);
+        if (!isValidPin(pin)) {
+            cout << "Ma PIN khong hop le. Vui long nhap lai (toi thieu 4 ky tu, chi chua so)." << endl;
+        }
+    } while (!isValidPin(pin));
+    customer.set_PIN(pin);
+
+    // Nhập và kiểm tra số dư tài khoản
+    do {
+        cout << "Nhap so du tai khoan (50 VND hoac hon): ";
+        cin >> soDu;
+        if (!isValidSoDu(soDu)) {
+            cout << "So du khong hop le. So du toi thieu la 50 VND." << endl;
+        }
+    } while (!isValidSoDu(soDu));
+    customer.set_SoDu(soDu);
+    
+    // Tạo file lưu thông tin khách hàng
+    string idBank = soThe.substr(0, 3); // lấy 3 ký tự đầu tiên của số thẻ
+    ofstream outputFile("Bank_" + idBank + "_information.txt", ios::app);
+    if (outputFile.is_open()) {
+        outputFile << customer.getSoThe() << ","
+                   << customer.getTenChuThe() << ","
+                   << customer.getPin() << ","
+                   << fixed << setprecision(0) << customer.getSoDu() << endl;
+        outputFile.close();
+        
+        // Vẽ khung thông báo
+        weigh();
+        cout << "|" << setw(39) << (char)201 << string(40, (char)205) << (char)187 << setw(39) << "|" << "\n";
+        cout << "|" << setw(39) << (char)186 << "       TAI KHOAN MOI DA DUOC TAO        " << (char)186 << setw(39) << "|" << "\n";
+        cout << "|" << setw(39) << (char)200 << string(40, (char)205) << (char)188 << setw(39) << "|" << "\n";
+        weigh();
+    } else {
+        cout << "!!!!!!!!Khong the tao tai khoan ngan hang!!!!!!!!" << endl;
+    }
 }
 
 void Admin::taoNganHang(string idBank) {
