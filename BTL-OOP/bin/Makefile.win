@@ -1,0 +1,22 @@
+CPP = g++
+INCS = -I"C:/Users/pc/OneDrive/Documents/test-btl/include"
+OBJ = main.o Admin.o ATM.o Customer.o Menu.o
+BIN = main
+
+$(BIN): $(OBJ)
+	$(CPP) $(OBJ) -o $(BIN)
+
+main.o: main.cpp
+	$(CPP) -c main.cpp $(INCS) -o main.o
+
+Admin.o: Admin.cpp
+	$(CPP) -c Admin.cpp $(INCS) -o Admin.o
+
+ATM.o: ATM.cpp
+	$(CPP) -c ATM.cpp $(INCS) -o ATM.o
+
+Customer.o: Customer.cpp
+	$(CPP) -c Customer.cpp $(INCS) -o Customer.o
+
+Menu.o: Menu.cpp
+	$(CPP) -c Menu.cpp $(INCS) -o Menu.o
