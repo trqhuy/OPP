@@ -1,13 +1,14 @@
 #ifndef MENU_H
 #define MENU_H
-#include <string>
-#include <iostream>
-#include<windows.h>
+
+
 #include "Admin.h"
 #include "ATM.h"
 #include "Customer.h"
-#include <iomanip>
+
 #include <conio.h>
+#include <regex>
+
 using namespace std;
 
 string make_space(int n);

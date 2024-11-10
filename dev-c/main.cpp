@@ -1,10 +1,8 @@
-#include <iostream>
-#include<windows.h>
-#include "Admin.h"
-#include "Customer.h"
-#include "ATM.h"
+
 #include "Menu.h"
+
 using namespace std;
+
 
 int main() {
 	Admin admin;

@@ -1,4 +1,5 @@
 #include "Customer.h"
+
 using namespace std;
 Customer::Customer(string soThe, string tenChuThe, string pin, float soDu)
 	: soThe(soThe), tenChuThe(tenChuThe), PIN(pin), soDu(soDu) {}

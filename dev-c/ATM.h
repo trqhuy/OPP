@@ -4,6 +4,15 @@
 #include "Customer.h"
 #include <string>
 #include <vector>
+#include <fstream>//ham mo file
+#include <sstream>//ham xu ly chuoi, dung de tach chuoi
+#include <ctime>//ham lay thoi gian
+#include <iostream>
+#include <iomanip>//tao so ngau nhien
+#include <cstdlib>
+#include <windows.h>
+#include <string.h>
+
 
 using namespace std;
 

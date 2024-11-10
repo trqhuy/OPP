@@ -1,20 +1,6 @@
-#include "Admin.h"
-#include "ATM.h"
-#include "Menu.h"
-#include<windows.h>
-#include <fstream>
-#include <iostream>
-#include <sstream>
-#include <ctime>
-#include <vector>
-#include <cstdlib>
-#include <iomanip>
 
-//#include <string>
-//#include <iomanip>
-#include <cctype>
-#include <limits>
-#include <regex>
+#include "Menu.h"
+
 
 using namespace std;
 

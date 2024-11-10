@@ -2,8 +2,6 @@
 #define ADMIN_H
 
 #include "ATM.h"
-#include "Customer.h"
-#include <vector>
 
 
 using namespace std;

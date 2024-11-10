@@ -1,9 +1,7 @@
 #include"Menu.h"
-#include <conio.h>
 
-#include <algorithm>  
-#include <cctype>  
-#include <string>
+
+
 using namespace std;
 
 int wait() {
