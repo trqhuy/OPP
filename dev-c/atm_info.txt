@@ -1,3 +1,3 @@
-123,1000,ngan,Hoat Dong
-1234,1000,ngan,Hoat Dong
-123,1000,daklak,Hoat Dong
+123,1288,ngan,Hoat Dong
+1234,1100,ngan,Hoat Dong
+123,1288,daklak,Hoat Dong

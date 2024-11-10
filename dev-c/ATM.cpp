@@ -141,22 +141,62 @@ string ATM::generateTransactionId() {
 	return ss.str();
 }
 
+//void ATM::printReceipt(const string& action, float amount, const string& transactionId) {
+//	weigh();
+//    cout << "|" << setw(39) << (char)201 << string(40, (char)205) << (char)187 << setw(39) << "|" << "\n";
+//    cout << "|" << setw(39) << (char)186 << "          HOA DON GIAO DICH             " << (char)186 << setw(39) << "|" << "\n";
+//    cout << "|" << setw(39) << (char)200 << string(40, (char)205) << (char)188 << setw(39) << "|" << "\n";
+//    weigh();
+//    cout << "|" << setw(119) << "|" << "\n";
+//    cout << "|" << setw(30) << "Ma giao dich:" << setw(20) << transactionId << setw(70) << "|\n";
+//    cout << "|" << setw(30) << "Loai giao dich:" << setw(20) << action << setw(70) << "|\n";
+//    cout << "|" << setw(30) << "So tien:" << setw(20) << fixed << setprecision(2) << amount << " VND" << setw(66) << "|\n";
+//    cout << "|" << setw(30) << "So du sau giao dich:" << setw(20) << fixed << setprecision(2) << Cust.getSoDu() << " VND" << setw(66) << "|\n";
+//    cout << "|" << setw(119) << "|" << "\n";
+//    
+//    weigh();
+//}
+
 void ATM::printReceipt(const string& action, float amount, const string& transactionId) {
-	weigh();
+    weigh();
+
+    
     cout << "|" << setw(39) << (char)201 << string(40, (char)205) << (char)187 << setw(39) << "|" << "\n";
     cout << "|" << setw(39) << (char)186 << "          HOA DON GIAO DICH             " << (char)186 << setw(39) << "|" << "\n";
     cout << "|" << setw(39) << (char)200 << string(40, (char)205) << (char)188 << setw(39) << "|" << "\n";
     weigh();
+
+    
     cout << "|" << setw(119) << "|" << "\n";
     cout << "|" << setw(30) << "Ma giao dich:" << setw(20) << transactionId << setw(70) << "|\n";
     cout << "|" << setw(30) << "Loai giao dich:" << setw(20) << action << setw(70) << "|\n";
     cout << "|" << setw(30) << "So tien:" << setw(20) << fixed << setprecision(2) << amount << " VND" << setw(66) << "|\n";
     cout << "|" << setw(30) << "So du sau giao dich:" << setw(20) << fixed << setprecision(2) << Cust.getSoDu() << " VND" << setw(66) << "|\n";
+    
+    
+    cout << "|" << setw(30) << "Ten chu the:" << setw(20) << Cust.getTenChuThe() << setw(70) << "|\n";  
+    cout << "|" << setw(30) << "So the:" << setw(20) << Cust.getSoThe() << setw(70) << "|\n";  
+
+    // In ngày giờ giao dịch
+    time_t now = time(0);  // Lấy thời gian hiện tại
+    tm *ltm = localtime(&now);  // Chuyển đổi thành thời gian địa phương
+    cout << "|" << setw(30) << "Ngay gio:" << setw(20) 
+         << 1900 + ltm->tm_year << "-" 
+         << setw(2)  << ltm->tm_mon + 1 << "-" 
+         << setw(2)  << ltm->tm_mday << " " 
+         << setw(2)  << ltm->tm_hour << ":" 
+         << setw(2)  << ltm->tm_min << ":" 
+         << setw(2)  << ltm->tm_sec << setw(55) << "|\n";
+
     cout << "|" << setw(119) << "|" << "\n";
     
+    // Thêm lời cảm ơn
+    cout << "|" << setw(119) << "|" << "\n";
+    cout << "|" << setw(50) << "cam on ban da su dung dich vu ATM!" << setw(70) << "|\n";
+    cout << "|" << setw(119) << "|" << "\n";
+
     weigh();
 }
-
 void ATM::capNhatSoDuATM() {
 	string idBank = idATM.substr(0, 3);
 	ifstream inputFile("atm_info.txt");
