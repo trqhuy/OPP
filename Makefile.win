@@ -1,0 +1,40 @@
+# Project: tool_project
+# Makefile created by Embarcadero Dev-C++ 6.3
+
+CPP      = g++.exe -D__DEBUG__
+CC       = gcc.exe -D__DEBUG__
+WINDRES  = windres.exe
+OBJ      = cpp/Admin.o cpp/ATM.o cpp/Customer.o cpp/Menu.o main.o
+LINKOBJ  = cpp/Admin.o cpp/ATM.o cpp/Customer.o cpp/Menu.o main.o
+LIBS     = -L"D:/New_DEV_C++/Dev-Cpp/TDM-GCC-64/lib" -L"D:/New_DEV_C++/Dev-Cpp/TDM-GCC-64/x86_64-w64-mingw32/lib" -static-libgcc -pg -g3
+INCS     = -I"D:/New_DEV_C++/Dev-Cpp/TDM-GCC-64/include" -I"D:/New_DEV_C++/Dev-Cpp/TDM-GCC-64/x86_64-w64-mingw32/include" -I"D:/New_DEV_C++/Dev-Cpp/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/9.2.0/include"
+CXXINCS  = -I"D:/New_DEV_C++/Dev-Cpp/TDM-GCC-64/include" -I"D:/New_DEV_C++/Dev-Cpp/TDM-GCC-64/x86_64-w64-mingw32/include" -I"D:/New_DEV_C++/Dev-Cpp/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/9.2.0/include" -I"D:/New_DEV_C++/Dev-Cpp/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/9.2.0/include/c++"
+BIN      = tool_project.exe
+CXXFLAGS = $(CXXINCS) -pg -g3
+CFLAGS   = $(INCS) -pg -g3
+DEL      = D:\New_DEV_C++\Dev-Cpp\DevCpp.exe INTERNAL_DEL
+
+.PHONY: all all-before all-after clean clean-custom
+
+all: all-before $(BIN) all-after
+
+clean: clean-custom
+	${DEL} $(OBJ) $(BIN)
+
+$(BIN): $(OBJ)
+	$(CPP) $(LINKOBJ) -o $(BIN) $(LIBS)
+
+cpp/Admin.o: cpp/Admin.cpp
+	$(CPP) -c cpp/Admin.cpp -o cpp/Admin.o $(CXXFLAGS)
+
+cpp/ATM.o: cpp/ATM.cpp
+	$(CPP) -c cpp/ATM.cpp -o cpp/ATM.o $(CXXFLAGS)
+
+cpp/Customer.o: cpp/Customer.cpp
+	$(CPP) -c cpp/Customer.cpp -o cpp/Customer.o $(CXXFLAGS)
+
+cpp/Menu.o: cpp/Menu.cpp
+	$(CPP) -c cpp/Menu.cpp -o cpp/Menu.o $(CXXFLAGS)
+
+main.o: main.cpp
+	$(CPP) -c main.cpp -o main.o $(CXXFLAGS)
