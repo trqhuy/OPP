@@ -1,9 +1,10 @@
 #ifndef ATM_H
 #define ATM_H
 
+
 #include "Customer.h"
 #include <string>
-#include <vector>
+#include <vector>//thư viện lấy vector
 #include <fstream>//ham mo file
 #include <sstream>//ham xu ly chuoi, dung de tach chuoi
 #include <ctime>//ham lay thoi gian
@@ -12,9 +13,13 @@
 #include <cstdlib>
 #include <windows.h>
 #include <string.h>
+//#include "Menu.h"
 
 
 using namespace std;
+
+void weigh1();
+
 
 class ATM {
 	private:
@@ -24,6 +29,7 @@ class ATM {
 		string diaChi;
 		bool trangThaiHoatDong;
 	public:
+		// đoạn xử lý thông tin ATM
 		ATM(string IdATM, int SoDuATM, string DiaChi, bool TrangThai);
 		
 		void set_soDuATM(int so_du_moi){
@@ -48,7 +54,9 @@ class ATM {
 		string get_diaChi(){
 			return diaChi;
 		} 
-
+		
+		
+		// phương thức thực hiện chức năng ATM
 		bool timSTK(string soThe);
 		bool checkPIN(string PIN);
 		void ghiLichSuATM(string action, float amount, const string& transactionId);
@@ -63,57 +71,5 @@ class ATM {
 		void capNhatSoDuATM();
 };
 
+
 #endif
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
